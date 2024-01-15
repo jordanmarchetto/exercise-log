@@ -1,0 +1,22 @@
+services:
+  #exercise-log:
+    #build: .
+    #ports:
+      #- "80:8000"
+    #depends_on:
+      #db:
+        #condition: service_healthy
+ 
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: '${DB_USER}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+    ports:
+      - "5433:5432"
+    volumes:
+      - exercise-log-db:/var/lib/postgresql/data
+
+volumes: 
+  exercise-log-db:

@@ -1,0 +1,45 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @exercise do |form| %>
+        <div class="form-floating py-2">
+          <%= text_field_tag :name, exercise.name, class: 'form-control' , placeholder: 'Name' %>
+          <%= form.label :name %>
+
+          <% @exercise.errors.full_messages_for(:name).each do |message| %>
+            <div>
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="form-floating py-2">
+          <%= text_area_tag :description, exercise.description, class: 'form-control' , placeholder: 'Description' %>
+          <%= form.label :description %>
+
+          <% @exercise.errors.full_messages_for(:description).each do |message| %>
+            <div>
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+
+        <div>
+          <%if method == :edit %>
+          <button type="submit" class="btn btn-success">
+            <i class="bi bi-floppy-fill"></i>
+            Update Exercise
+          </button>
+          <% else %>
+          <button type="submit" class="btn btn-success">
+            <i class="bi bi-plus-circle-fill"></i>
+            Add Exercise
+          </button>
+          <% end %>
+
+        </div>
+        <% end %>
+
+    </div>
+  </div>
+</div>
