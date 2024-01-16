@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "exercises#index" # TODO: change to login/home
 
-  resources :exercises
+  resources :exercises do
+    resources :workout_sets, only: :create
+  end
 
 
 

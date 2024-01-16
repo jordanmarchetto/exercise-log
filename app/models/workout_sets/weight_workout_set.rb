@@ -1,0 +1,3 @@
+class WeightWorkoutSet < WorkoutSet
+
+end

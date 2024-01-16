@@ -11,7 +11,6 @@ gem "sprockets-rails"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
@@ -45,7 +44,6 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# css/UI library
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -63,8 +61,6 @@ group :development do
   gem 'pry-rails'
   gem 'pry-byebug'
 
-
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -77,6 +73,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
 
 gem "cssbundling-rails", "~> 1.3"
