@@ -26,19 +26,38 @@
           <h2>Sets</h2>
           <ul>
           <% @sets.each do |set| %>
-            <li><%= set.created_at %>: <%= "#{set.rep_count}x#{set.rep_value}lbs." %>  <%= "(RPE: #{set.rpe})" if set.rpe? %></li>
+            <li><%= set.type %> <%= set.created_at %>: <%= "#{set.rep_count}x#{set.rep_value}lbs." %>  <%= "(RPE: #{set.rpe})" if set.rpe? %></li>
           <% end %>
           </ul>
 
-          <%= form_for @set, url: exercise_workout_sets_path(@exercise.id) do |form|%>
-            <div class="form-floating py-2">
-              <%= text_field_tag :reps, nil, class: 'form-control' , placeholder: 'Reps' %>
-              <%= form.label :reps %>
-            </div>
-            <button type="submit" class="btn btn-success">
-              <i class="bi bi-plus-circle-fill"></i>
-              Log Set 
-            </button>
+          <% @exercise.set_types.each do |set_type| %>
+            <%= form_for @set, url: exercise_workout_sets_path(@exercise.id) do |form|%>
+              <%= hidden_field_tag "type", "#{set_type}" %>
+
+              <%= "Log: #{set_type}" %>
+              <% if set_type.constantize.has_weight? %>
+                <div class="form-floating py-2">
+                  <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
+                  <%= form.label :weight %>
+                </div>
+              <% end %>
+              <% if set_type.constantize.has_reps? %>
+                <div class="form-floating py-2">
+                  <%= text_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
+                  <%= form.label :rep_count %>
+                </div>
+              <% end %>
+              <% if set_type.constantize.has_rpe? %>
+                <div class="form-floating py-2">
+                  <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
+                  <%= form.label :rpe %>
+                </div>
+              <% end %>
+              <button type="submit" class="btn btn-success">
+                <i class="bi bi-plus-circle-fill"></i>
+                Log Set
+              </button>
+            <% end %>
           <% end %>
 
         </div>

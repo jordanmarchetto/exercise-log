@@ -1,8 +1,9 @@
 class WorkoutSetsController < ApplicationController
 
   def create
+    #TODO: add param parsing
     exercise = Exercise.find(params[:exercise_id])
-    @set = WorkoutSet.new(exercise: exercise)
+    @set = WorkoutSet.new(exercise: exercise, type: params[:type], rep_count: params[:rep_count], rep_value: params[:rep_value] )
 
     if @set.save
       redirect_to exercise
