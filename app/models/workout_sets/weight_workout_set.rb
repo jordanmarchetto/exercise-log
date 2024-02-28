@@ -1,4 +1,4 @@
 class WeightWorkoutSet < WorkoutSet
-  #a set that involves a weight; ex. most barbell movements
+  # weight based set; ex: most barbell movements
 
 end

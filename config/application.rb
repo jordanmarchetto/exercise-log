@@ -16,6 +16,7 @@ module ExerciseLog
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    # autoload models
     config.autoload_paths += Dir[Rails.root.join("app", "models", "{*/}")]
 
     # Configuration for the application, engines, and railties goes here.
