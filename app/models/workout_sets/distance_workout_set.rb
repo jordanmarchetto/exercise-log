@@ -1,0 +1,3 @@
+class DistanceWorkoutSet < WorkoutSet
+
+end

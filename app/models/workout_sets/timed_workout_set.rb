@@ -1,0 +1,3 @@
+class TimedWorkoutSet < WorkoutSet
+
+end
