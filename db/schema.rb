@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_16_015944) do
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.text "set_types", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,7 +25,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_16_015944) do
   create_table "workout_sets", force: :cascade do |t|
     t.bigint "exercise_id", null: false
     t.string "type"
-    t.integer "reps"
+    t.integer "rep_count"
+    t.integer "rep_value"
+    t.integer "rpe"
     t.integer "distance"
     t.float "duration"
     t.boolean "timer_direction"

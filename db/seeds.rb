@@ -10,13 +10,25 @@
 
   #add some exercises
   ["Front Squat", "Deadlift", "Bench Press", "Back Squat"].each do |lift|
-    Exercise.find_or_create_by!(name: lift)
+    Exercise.find_or_create_by!(name: lift, set_types: ['WeightWorkoutSet'])
+  end
+  ["Jog", "Row"].each do |lift|
+    Exercise.find_or_create_by!(name: lift, set_types: ['DistanceWorkoutSet'])
+  end
+  ["Plank"].each do |lift|
+    Exercise.find_or_create_by!(name: lift, set_types: ['TimedWorkoutSet'])
+  end
+  ["Biceps"].each do |lift|
+    Exercise.find_or_create_by!(name: lift, set_types: ['RepWorkoutSet', 'WeightWorkoutSet'])
   end
 
   #add some sets
-  s = WorkoutSet.new(exercise: Exercise.first)
+  s = WeightWorkoutSet.new(exercise: Exercise.first, rep_value: 155, rep_count: 5, rpe: 5.5)
   s.save!
-  s = WorkoutSet.new(exercise: Exercise.first)
+  s = WeightWorkoutSet.new(exercise: Exercise.first, rep_value: 155, rep_count: 5,rpe: 6)
   s.save!
-  s = WorkoutSet.new(exercise: Exercise.first)
+  s = WeightWorkoutSet.new(exercise: Exercise.first, rep_value: 155, rep_count: 5,rpe: 9)
+  s.save!
+
+  s = DistanceWorkoutSet.new(exercise: Exercise.find(5), distance: 5, duration: 60)
   s.save!
