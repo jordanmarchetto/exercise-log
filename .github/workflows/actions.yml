@@ -23,6 +23,5 @@ jobs:
         key: ${{ secrets.KEY }} #ssh key
         port: ${{ secrets.PORT }}
         script: |
-          echo "running command"
-          pwd
-          ls -al
+          echo "running update script"
+          ${{ secrets.SCRIPT_TO_RUN }}
