@@ -34,7 +34,7 @@
             <%= form_for @set, url: exercise_workout_sets_path(@exercise.id) do |form|%>
               <%= hidden_field_tag "type", "#{set_type}" %>
 
-              <%= "Log a #{set_type}:" %>
+              <%= "Log a #{set_type}" %>
               <% if set_type.constantize.has_weight? %>
                 <div class="form-floating py-2">
                   <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
