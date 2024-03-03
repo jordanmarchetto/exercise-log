@@ -1,12 +1,4 @@
 services:
-  #exercise-log:
-    #build: .
-    #ports:
-      #- "80:8000"
-    #depends_on:
-      #db:
-        #condition: service_healthy
- 
   db:
     image: postgres
     restart: always
@@ -14,9 +6,29 @@ services:
       POSTGRES_USER: '${DB_USER}'
       POSTGRES_PASSWORD: '${DB_PASSWORD}'
     ports:
-      - "5433:5432"
+      - "${EXTERNAL_DB_PORT}:5432"
     volumes:
       - exercise-log-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
+  exercise-log:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      DB_HOST: db
+      DB_USER: '${DB_USER}'
+      DB_PASSWORD: '${DB_PASSWORD}'
+      DB_PORT: '${DB_PORT}'
+      SECRET_KEY_BASE: '${SECRET_KEY_BASE}'
+    ports:
+      - "${APP_PORT}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+ 
 volumes: 
   exercise-log-db:

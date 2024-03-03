@@ -18,5 +18,3 @@ test:
 production:
   <<: *default
   database: exercise_log_production
-  username: postgres
-  password: <%= ENV["TESTAPP_DATABASE_PASSWORD"] %>
