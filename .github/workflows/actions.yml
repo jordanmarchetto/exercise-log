@@ -23,5 +23,7 @@ jobs:
         key: ${{ secrets.KEY }} #ssh key
         port: ${{ secrets.PORT }}
         script: |
-          echo "running update script: ${{ secrets.SCRIPT_TO_RUN }}"
-          ${{ secrets.SCRIPT_TO_RUN }}
+          echo "going to script dir"
+          cd ${{ secrets.SCRIPT_PATH}}
+          echo "running update script"
+          ${{ secrets.SCRIPT_NAME }}
