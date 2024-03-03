@@ -26,4 +26,4 @@ jobs:
           echo "going to script dir"
           cd ${{ secrets.SCRIPT_PATH}}
           echo "running update script"
-          ${{ secrets.SCRIPT_NAME }}
+          ./${{ secrets.SCRIPT_NAME }}
