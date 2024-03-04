@@ -2,6 +2,10 @@
 name: deploy site on git push
 on: [push]
 jobs:
+  build:
+    using: 'docker'
+    image: 'Dockerfile'
+
   # build:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -12,7 +16,7 @@ jobs:
   #     - run: docker build .
 
   deploy:
-    #needs: build 
+    needs: build 
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using password
