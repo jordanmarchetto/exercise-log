@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-echo "stash any pending changes"
+echo "stash any local changes"
 git stash
 
 echo "pulling latest codebase"
