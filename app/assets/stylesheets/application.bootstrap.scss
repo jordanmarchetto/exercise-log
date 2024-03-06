@@ -2,11 +2,14 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 
+@mixin generic-list {
+    max-width: 75%;
+    width: 600px;  
+}
+
 .list-exercises {
     .exercise-list-wrapper {
-        max-width: 75%;
-        width: 600px;
-
+        @include generic-list;
         .exercise-icon {
             font-size: 25px;
         }
@@ -15,4 +18,17 @@
             align-items: center;
         }
     }
+}
+
+.recent-sets-list{
+    @include generic-list;
+    .recent-set-item{
+        .rpe-icon{
+            font-size: 25px;
+        }
+    }
+}
+
+.log-set-forms-list{
+    @include generic-list;
 }

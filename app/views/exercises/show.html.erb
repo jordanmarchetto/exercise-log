@@ -23,82 +23,97 @@
                 <%= @exercise.description %>
               </a>
             </li>
-          <% end %>
-          <li class="nav-item">
-            <%= link_to edit_exercise_path(@exercise), class: "nav-link" do %>
-              <i class="bi bi-pencil-fill"></i>
-              Edit
-              <% end %>
-          </li>
-          <li class="nav-item">
-            <%= button_to exercise_path(@exercise), method: :delete, class: "nav-link" do %>
-              <i class="bi bi-trash3-fill"></i>
-              Delete
-              <% end %>
-          </li>
+            <% end %>
+              <li class="nav-item">
+                <%= link_to edit_exercise_path(@exercise), class: "nav-link" do %>
+                  <i class="bi bi-pencil-fill"></i>
+                  Edit
+                  <% end %>
+              </li>
+              <li class="nav-item">
+                <%= button_to exercise_path(@exercise), method: :delete, class: "nav-link" do %>
+                  <i class="bi bi-trash3-fill"></i>
+                  Delete
+                  <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to exercises_path, class: "nav-link" do %>
+                  <i class="bi bi-chevron-left"></i>
+                  Exercise List
+                  <% end %>
+              </li>
         </ul>
       </div>
     </div>
   </div>
 </nav>
 
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
 
-      <div class="row">
-        <div class="col">
-          <h2>Recent Sets</h2>
-          <ul>
-            <% @sets.each do |set| %>
-              <li><strong>
-                  <%= set.type %>
-                </strong>: <%= set.created_at %>: <%= "#{set.rep_count}x#{set.rep_value}lbs." %>
-                    <%= "(RPE: #{set.rpe})" if set.rpe? %>
-              </li>
-              <% end %>
-          </ul>
-
-          <% @exercise.set_types.each do |set_type| %>
-            <%= form_for @set, url: exercise_workout_sets_path(@exercise.id) do |form|%>
-              <%= hidden_field_tag "type" , "#{set_type}" %>
-
-                <%= "Log a #{set_type}" %>
-                  <% if set_type.constantize.has_weight? %>
-                    <div class="form-floating py-2">
-                      <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
-                        <%= form.label :weight %>
-                    </div>
-                    <% end %>
-                      <% if set_type.constantize.has_reps? %>
-                        <div class="form-floating py-2">
-                          <%= text_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
-                            <%= form.label :rep_count %>
-                        </div>
-                        <% end %>
-                          <% if set_type.constantize.has_rpe? %>
-                            <div class="form-floating py-2">
-                              <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
-                                <%= form.label :rpe %>
-                            </div>
-                            <% end %>
-                              <button type="submit" class="btn btn-success">
-                                <i class="bi bi-plus-circle-fill"></i>
-                                Log Set
-                              </button>
-                              <% end %>
-                                <% end %>
-
-        </div>
-      </div>
-
-      <div class="d-flex gap-2 justify-content-center py-1">
-        <%= link_to exercises_path, class: "btn btn-primary rounded-pill px-3" do %>
-          <i class="bi bi-chevron-left"></i>
-          All Exercises
-          <% end %>
-      </div>
-
-    </div>
+<div class="d-flex flex-column flex-md-row p-1 align-items-center justify-content-center">
+  <h2 class="display-5 fw-bold text-body-emphasis">Recent Sets</h2>
+</div>
+<div class="d-flex flex-column flex-md-row p-1 gap-4 py-md-1 align-items-center justify-content-center">
+  <div class="recent-sets-list list-group">
+    <% @sets.each do |set| %>
+      <%= render partial: "shared/partials/recent_set" , locals: { set: set} %>
+        <% end %>
   </div>
+</div>
+
+
+
+<div class="d-flex flex-column flex-md-row p-1 align-items-center justify-content-center">
+  <h2 class="display-5 fw-bold text-body-emphasis">Log Set</h2>
+</div>
+<div class="d-flex flex-column flex-md-row p-1 gap-4 py-md-1 align-items-center justify-content-center">
+  <div class="log-set-forms-list list-group">
+
+    <% @exercise.set_types.each do |set_type| %>
+      <div class="list-group-item rounded-3 py-3">
+        <%= form_for @set, url: exercise_workout_sets_path(@exercise.id) do |form|%>
+          <%= hidden_field_tag "type" , "#{set_type}" %>
+
+            <h6>
+              <%= "#{set_type}:" %>
+            </h6>
+            <% if set_type.constantize.has_weight? %>
+              <div class="form-floating py-2">
+                <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
+                  <%= form.label :weight %>
+              </div>
+              <% end %>
+
+                <% if set_type.constantize.has_reps? %>
+                  <div class="form-floating py-2">
+                    <%= text_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
+                      <%= form.label :rep_count %>
+                  </div>
+                  <% end %>
+
+                    <% if set_type.constantize.has_rpe? %>
+                      <div class="form-floating py-2">
+                        <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
+                          <%= form.label :rpe %>
+                      </div>
+                      <%= render partial: "shared/partials/rpe_guidelines" %>
+
+                      <% end %>
+
+                        <button type="submit" class="btn btn-success">
+                          <i class="bi bi-plus-circle-fill"></i>
+                          Log Set
+                        </button>
+                        <% end %>
+      </div>
+      <% end %>
+  </div>
+</div>
+
+
+
+<div class="d-flex flex-column flex-md-row p-1 align-items-center justify-content-center">
+  <%= link_to exercises_path, class: "btn btn-primary rounded-pill px-3" do %>
+    <i class="bi bi-chevron-left"></i>
+    Exercise List
+    <% end %>
 </div>
