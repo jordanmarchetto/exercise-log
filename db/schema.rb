@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_16_015944) do
     t.integer "rep_value"
     t.integer "rpe"
     t.integer "distance"
+    t.string "distance_unit"
     t.float "duration"
     t.boolean "timer_direction"
     t.datetime "created_at", null: false

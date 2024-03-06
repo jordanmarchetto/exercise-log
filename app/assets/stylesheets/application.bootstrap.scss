@@ -7,6 +7,11 @@
     width: 600px;  
 }
 
+@mixin scrollable {
+    overflow: scroll;
+    max-height: 400px;
+}
+
 .list-exercises {
     .exercise-list-wrapper {
         @include generic-list;
@@ -22,6 +27,7 @@
 
 .recent-sets-list{
     @include generic-list;
+    @include scrollable;
     .recent-set-item{
         .rpe-icon{
             font-size: 25px;

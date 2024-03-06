@@ -7,6 +7,7 @@ class CreateWorkoutSets < ActiveRecord::Migration[7.1]
       t.integer :rep_value
       t.integer :rpe
       t.integer :distance
+      t.string :distance_unit
       t.float :duration
       t.boolean :timer_direction
 

@@ -19,13 +19,27 @@
               </div>
               <% end %>
 
+            <% if set_type.constantize.has_distance? %>
+              <div class="form-floating py-2">
+                <%= text_field_tag :distance, nil, class: 'form-control' , placeholder: 'Distance' %>
+                  <%= form.label :distance %>
+              </div>
+              <% end %>
+
+            <% if set_type.constantize.has_duration? %>
+              <div class="form-floating py-2">
+                <%= text_field_tag :duration, nil, class: 'form-control' , placeholder: 'Duration' %>
+                  <%= form.label :duration %>
+              <%= hidden_field_tag "timer_direction" , "#{:up}" %>
+              </div>
+              <% end %>
+
                 <% if set_type.constantize.has_rpe? %>
                   <div class="form-floating py-2">
                     <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
                       <%= form.label :rpe %>
                   </div>
                   <%= render partial: "shared/partials/rpe_guidelines" %>
-
                   <% end %>
 
                     <button type="submit" class="btn btn-success">
