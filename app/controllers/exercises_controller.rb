@@ -1,11 +1,11 @@
 class ExercisesController < ApplicationController
   def index
-    @exercises = Exercise.all
+    @exercises = Exercise.all.order("name ASC")
   end
 
   def show
     @exercise = Exercise.find(params[:id])
-    @sets = WorkoutSet.where(exercise: @exercise)
+    @sets = WorkoutSet.where(exercise: @exercise).order("created_at DESC")
     @set = WorkoutSet.new
   end
 
