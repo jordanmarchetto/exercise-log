@@ -1,11 +1,7 @@
+<%= render partial: "shared/partials/title_text", locals: { title: @exercise.name} %>
 <div class="container text-center">
   <div class="row">
     <div class="col">
-
-      <h1>
-        <%= @exercise.name %>
-      </h1>
-
       <p>
         <%= @exercise.description %>
       </p>
@@ -23,7 +19,7 @@
 
       <div class="row">
         <div class="col">        
-          <h2>Sets</h2>
+          <h2>Recent Sets</h2>
           <ul>
           <% @sets.each do |set| %>
             <li><strong><%= set.type %></strong>: <%= set.created_at %>: <%= "#{set.rep_count}x#{set.rep_value}lbs." %>  <%= "(RPE: #{set.rpe})" if set.rpe? %></li>

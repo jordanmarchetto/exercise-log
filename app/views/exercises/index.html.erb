@@ -1,6 +1,3 @@
-<div class="px-4 py-2 my-2 text-center">
-  <h1 class="display-5 fw-bold text-body-emphasis">Exercise Log</h1>
-</div>
-
+<%= render partial: "shared/partials/title_text", locals: { title: 'Exercise Log'} %>
 
 <%= render "list_exercises", exercises: @exercises %>

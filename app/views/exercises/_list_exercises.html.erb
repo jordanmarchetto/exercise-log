@@ -6,7 +6,7 @@
         <a href="<%= exercise_path(exercise)%>" class="list-group-item list-group-item-action d-flex gap-3 py-3"
           aria-current="true">
           <div class="rounded-circle flex-shrink-0">
-            <span class="exercise-icon bi <%= exercise.icon.present? ? exercise.icon : 'bi-person-arms-up' %>"></span>
+            <span class="exercise-icon bi <%= display_icon(exercise) %>"></span>
           </div>
   
           <div class="exercise-name-wrapper d-flex gap-2 w-100 justify-content-between ">
@@ -22,7 +22,7 @@
       <%= link_to new_exercise_path, class: "list-group-item list-group-item-action d-flex gap-3 py-3" do %>
         <button type="button" class="btn btn-success">
           <i class="bi bi-plus-circle-fill"></i>
-          Add Exercise
+          Create Exercise
         </button>
       <% end %>
     </div>
