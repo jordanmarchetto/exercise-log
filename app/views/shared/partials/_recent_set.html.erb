@@ -22,6 +22,11 @@
                             <h6 class="mb-0">
                                 <%= "#{set.distance} #{set.distance_unit}" %>
                             </h6>
+                            <% if set.duration.present? && set.duration > 0 %>
+                            <h6 class="mb-0">
+                                <%= "#{set.duration} seconds" %>
+                            </h6>
+                            <% end %>
                         <% end %>
 
                         <p class="mb-0 opacity-75">
