@@ -10,16 +10,16 @@
 
   #add some exercises
   ["Front Squat", "Deadlift", "Bench Press", "Back Squat"].each do |lift|
-    Exercise.find_or_create_by!(name: lift, set_types: ['WeightWorkoutSet'])
+    Exercise.find_or_create_by!(name: lift, set_types: ['WeightWorkoutSet'], icon: 'bi-trophy-fill')
   end
   ["Jog", "Row"].each do |lift|
-    Exercise.find_or_create_by!(name: lift, set_types: ['DistanceWorkoutSet'])
+    Exercise.find_or_create_by!(name: lift, set_types: ['DistanceWorkoutSet'], icon: 'bi-scooter')
   end
   ["Plank"].each do |lift|
-    Exercise.find_or_create_by!(name: lift, set_types: ['TimedWorkoutSet'])
+    Exercise.find_or_create_by!(name: lift, set_types: ['TimedWorkoutSet'], icon: 'bi-person-arms-up')
   end
   ["Biceps"].each do |lift|
-    Exercise.find_or_create_by!(name: lift, set_types: ['RepWorkoutSet', 'WeightWorkoutSet'])
+    Exercise.find_or_create_by!(name: lift, set_types: ['RepWorkoutSet', 'WeightWorkoutSet'], icon: 'bi-person-arms-up')
   end
 
   #add some sets

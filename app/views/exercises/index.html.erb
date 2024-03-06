@@ -1,33 +1,6 @@
-<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
-  <div class="list-group">
-
-    <% @exercises.each do |exercise| %>
-      <a href="<%= exercise_path(exercise)%>" class="list-group-item list-group-item-action d-flex gap-3 py-3"
-        aria-current="true">
-        <div class="rounded-circle flex-shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-            class="bi bi-person-arms-up" viewBox="0 0 16 16">
-            <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-            <path
-              d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.5 1.5 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.7.7 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.7.7 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z" />
-          </svg>
-        </div>
-
-        <div class="d-flex gap-2 w-100 justify-content-between">
-          <div>
-            <h6 class="mb-0">
-              <%= exercise.name %>
-            </h6>
-          </div>
-        </div>
-      </a>
-    <% end %>
-
-    <%= link_to new_exercise_path, class: "list-group-item list-group-item-action d-flex gap-3 py-3" do %>
-      <button type="button" class="btn btn-success">
-        <i class="bi bi-plus-circle-fill"></i>
-        Add Exercise
-      </button>
-    <% end %>
-  </div>
+<div class="px-4 py-2 my-2 text-center">
+  <h1 class="display-5 fw-bold text-body-emphasis">Exercise Log</h1>
 </div>
+
+
+<%= render "list_exercises", exercises: @exercises %>

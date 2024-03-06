@@ -1,2 +1,18 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.list-exercises {
+    .exercise-list-wrapper {
+        max-width: 75%;
+        width: 600px;
+
+        .exercise-icon {
+            font-size: 25px;
+        }
+
+        .exercise-name-wrapper {
+            align-items: center;
+        }
+    }
+}

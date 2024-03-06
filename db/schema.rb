@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_16_015944) do
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.text "icon"
     t.text "set_types", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
