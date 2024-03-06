@@ -1,60 +1,93 @@
-<%= render partial: "shared/partials/title_text", locals: { title: @exercise.name} %>
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-      <p>
-        <%= @exercise.description %>
-      </p>
-
-      <div class="d-flex gap-2 justify-content-center py-2">
-        <%= link_to edit_exercise_path(@exercise), class: "btn btn-secondary rounded-pill px-3" do %>
-          <i class="bi bi-pencil-fill"></i>
-          Edit
+<nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <%= @exercise.name %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark"
+      aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbarDark"
+      aria-labelledby="offcanvasNavbarDarkLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">
+          <%= @exercise.name %>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <% if @exercise.description.present? %>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">
+                <%= @exercise.description %>
+              </a>
+            </li>
           <% end %>
-            <%= button_to exercise_path(@exercise), method: :delete, class: "btn btn-danger rounded-pill px-3" do %>
+          <li class="nav-item">
+            <%= link_to edit_exercise_path(@exercise), class: "nav-link" do %>
+              <i class="bi bi-pencil-fill"></i>
+              Edit
+              <% end %>
+          </li>
+          <li class="nav-item">
+            <%= button_to exercise_path(@exercise), method: :delete, class: "nav-link" do %>
               <i class="bi bi-trash3-fill"></i>
               Delete
               <% end %>
+          </li>
+        </ul>
       </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
 
       <div class="row">
-        <div class="col">        
+        <div class="col">
           <h2>Recent Sets</h2>
           <ul>
-          <% @sets.each do |set| %>
-            <li><strong><%= set.type %></strong>: <%= set.created_at %>: <%= "#{set.rep_count}x#{set.rep_value}lbs." %>  <%= "(RPE: #{set.rpe})" if set.rpe? %></li>
-          <% end %>
+            <% @sets.each do |set| %>
+              <li><strong>
+                  <%= set.type %>
+                </strong>: <%= set.created_at %>: <%= "#{set.rep_count}x#{set.rep_value}lbs." %>
+                    <%= "(RPE: #{set.rpe})" if set.rpe? %>
+              </li>
+              <% end %>
           </ul>
 
           <% @exercise.set_types.each do |set_type| %>
             <%= form_for @set, url: exercise_workout_sets_path(@exercise.id) do |form|%>
-              <%= hidden_field_tag "type", "#{set_type}" %>
+              <%= hidden_field_tag "type" , "#{set_type}" %>
 
-              <%= "Log a #{set_type}" %>
-              <% if set_type.constantize.has_weight? %>
-                <div class="form-floating py-2">
-                  <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
-                  <%= form.label :weight %>
-                </div>
-              <% end %>
-              <% if set_type.constantize.has_reps? %>
-                <div class="form-floating py-2">
-                  <%= text_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
-                  <%= form.label :rep_count %>
-                </div>
-              <% end %>
-              <% if set_type.constantize.has_rpe? %>
-                <div class="form-floating py-2">
-                  <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
-                  <%= form.label :rpe %>
-                </div>
-              <% end %>
-              <button type="submit" class="btn btn-success">
-                <i class="bi bi-plus-circle-fill"></i>
-                Log Set
-              </button>
-            <% end %>
-          <% end %>
+                <%= "Log a #{set_type}" %>
+                  <% if set_type.constantize.has_weight? %>
+                    <div class="form-floating py-2">
+                      <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
+                        <%= form.label :weight %>
+                    </div>
+                    <% end %>
+                      <% if set_type.constantize.has_reps? %>
+                        <div class="form-floating py-2">
+                          <%= text_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
+                            <%= form.label :rep_count %>
+                        </div>
+                        <% end %>
+                          <% if set_type.constantize.has_rpe? %>
+                            <div class="form-floating py-2">
+                              <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
+                                <%= form.label :rpe %>
+                            </div>
+                            <% end %>
+                              <button type="submit" class="btn btn-success">
+                                <i class="bi bi-plus-circle-fill"></i>
+                                Log Set
+                              </button>
+                              <% end %>
+                                <% end %>
 
         </div>
       </div>

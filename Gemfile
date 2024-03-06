@@ -75,3 +75,8 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.3"
+gem 'bootstrap', '~> 5.3.2'
+gem 'jquery-rails'
+
+# Use Sass to process CSS
+gem "sassc-rails"
