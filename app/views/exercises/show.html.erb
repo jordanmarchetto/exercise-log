@@ -69,43 +69,8 @@
   <div class="log-set-forms-list list-group">
 
     <% @exercise.set_types.each do |set_type| %>
-      <div class="list-group-item rounded-3 py-3">
-        <%= form_for @set, url: exercise_workout_sets_path(@exercise.id) do |form|%>
-          <%= hidden_field_tag "type" , "#{set_type}" %>
-
-            <h6>
-              <%= "#{set_type}:" %>
-            </h6>
-            <% if set_type.constantize.has_weight? %>
-              <div class="form-floating py-2">
-                <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
-                  <%= form.label :weight %>
-              </div>
-              <% end %>
-
-                <% if set_type.constantize.has_reps? %>
-                  <div class="form-floating py-2">
-                    <%= text_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
-                      <%= form.label :rep_count %>
-                  </div>
-                  <% end %>
-
-                    <% if set_type.constantize.has_rpe? %>
-                      <div class="form-floating py-2">
-                        <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
-                          <%= form.label :rpe %>
-                      </div>
-                      <%= render partial: "shared/partials/rpe_guidelines" %>
-
-                      <% end %>
-
-                        <button type="submit" class="btn btn-success">
-                          <i class="bi bi-plus-circle-fill"></i>
-                          Log Set
-                        </button>
-                        <% end %>
-      </div>
-      <% end %>
+      <%= render partial: "shared/partials/log_set_form" , locals: { set_type: set_type, exercise: @exercise} %>
+    <% end %>
   </div>
 </div>
 
