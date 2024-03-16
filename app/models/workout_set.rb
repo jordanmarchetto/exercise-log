@@ -1,6 +1,10 @@
 class WorkoutSet < ApplicationRecord
   belongs_to :exercise
 
+  # These should be defined in every child class
+  NAME = "Workout Set Base Class"
+  DESCRIPTION = "Base class for all other workout set subclasses."
+
   class TimerDirections
     TIMER_DIRECTIONS = %i[up down]
     TIMER_DIRECTIONS.each do |type|
@@ -10,9 +14,9 @@ class WorkoutSet < ApplicationRecord
   end
 
   # if descendants aren't properly autoloading:
-  # Dir["#{Rails.root}/app/models/workout_sets/*.rb"].each do |file|
-  #   require_dependency file
-  # end
+  Dir["#{Rails.root}/app/models/workout_sets/*.rb"].each do |file|
+    require_dependency file
+  end
 
   # we're using a bool db column, so true is up and false is down
   def timer_direction

@@ -1,27 +1,42 @@
-<div class="container text-center">
+<div class="container ">
   <div class="row">
     <div class="col">
+
+      <% if @exercise.errors.full_messages.present? %>
+        <div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+          <% @exercise.errors.full_messages.each do |message| %>
+            <div>
+              <%= message %>
+            </div>
+            <% end %>
+        </div>
+      <% end %>
+
       <%= form_with model: @exercise do |form| %>
         <div class="form-floating py-2">
           <%= text_field_tag :name, exercise.name, class: 'form-control' , placeholder: 'Name' %>
           <%= form.label :name %>
-
-          <% @exercise.errors.full_messages_for(:name).each do |message| %>
-            <div>
-              <%= message %>
-            </div>
-          <% end %>
         </div>
 
         <div class="form-floating py-2">
           <%= text_area_tag :description, exercise.description, class: 'form-control' , placeholder: 'Description' %>
           <%= form.label :description %>
+        </div>
 
-          <% @exercise.errors.full_messages_for(:description).each do |message| %>
-            <div>
-              <%= message %>
-            </div>
-          <% end %>
+        <div class="form-floating py-2">
+          <h3 class="fs-2 text-body-emphasis">Set Types:</h3>
+          <div class="list-group">
+            <% WorkoutSet.descendants.each do |set_type| %>
+
+            <label class="list-group-item d-flex gap-2">
+              <%= check_box_tag "set_types[#{set_type.name}]", class: "form-check-input flex-shrink-0" %>
+
+              <span>
+              <%= set_type::NAME %> - <%= set_type::DESCRIPTION %> 
+              </span>
+            </label>
+            <% end %>
+          </div>
         </div>
 
         <div>
