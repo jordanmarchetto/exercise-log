@@ -12,6 +12,10 @@
     max-height: 400px;
 }
 
+.field_with_errors{
+    display: none;
+}
+
 .list-exercises {
     .exercise-list-wrapper {
         @include generic-list;
