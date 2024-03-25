@@ -7,14 +7,14 @@
         </h6>
         <% if set_type.constantize.has_weight? %>
           <div class="form-floating py-2">
-            <%= text_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
+            <%= number_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
               <%= form.label :weight %>
           </div>
           <% end %>
 
             <% if set_type.constantize.has_reps? %>
               <div class="form-floating py-2">
-                <%= text_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
+                <%= number_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
                   <%= form.label :rep_count %>
               </div>
               <% end %>
@@ -41,7 +41,7 @@
 
                 <% if set_type.constantize.has_rpe? %>
                   <div class="form-floating py-2">
-                    <%= text_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
+                    <%= number_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
                       <%= form.label :rpe %>
                   </div>
                   <%= render partial: "shared/partials/rpe_guidelines" %>
