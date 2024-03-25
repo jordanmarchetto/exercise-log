@@ -12,4 +12,29 @@ class WorkoutSetsController < ApplicationController
       # render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+    @set = WorkoutSet.find(params[:id])
+  end
+
+  def edit
+    @set = WorkoutSet.find(params[:id])
+  end
+
+  def update
+    @set = WorkoutSet.find(params[:id])
+
+    if @set.update(params)
+      redirect_to @set
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @set = WorkoutSet.find(params[:id])
+    @set.destroy
+
+    redirect_to root_path, status: :see_other
+  end
 end

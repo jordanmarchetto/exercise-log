@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root "exercises#index" # TODO: change to login/home
 
   resources :exercises do
-    resources :workout_sets, only: :create
+    resources :workout_sets
   end
 
 
