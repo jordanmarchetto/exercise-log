@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "exercise_logging.js" %>
+<% end %>
+
 <div class="list-group-item rounded-3 py-3 my-1">
     <%= form_for @set, url: exercise_workout_sets_path(exercise.id) do |form|%>
       <%= hidden_field_tag "type" , "#{set_type}" %>
@@ -14,8 +18,17 @@
 
             <% if set_type.constantize.has_reps? %>
               <div class="form-floating py-2">
-                <%= number_field_tag :rep_count, nil, class: 'form-control' , placeholder: 'Reps' %>
+                <%= number_field_tag :rep_count, nil, class: 'form-control', id: 'rep-count', placeholder: 'Reps' %>
                   <%= form.label :rep_count %>
+              </div>
+              <div class="form-floating py-2 text-center" id="shortcut-buttons">
+                Rep Shortcuts:
+                <button class="btn btn-secondary rounded-pill">1</button>
+                <button class="btn btn-secondary rounded-pill">3</button>
+                <button class="btn btn-secondary rounded-pill">5</button>
+                <button class="btn btn-secondary rounded-pill">8</button>
+                <button class="btn btn-secondary rounded-pill">10</button>
+                <button class="btn btn-secondary rounded-pill">12</button>
               </div>
               <% end %>
 
