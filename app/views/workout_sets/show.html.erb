@@ -1,10 +1,4 @@
-<nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      Edit <%= @set.class::NAME %>
-    </a>
-  </div>
-</nav>
+<%= render partial: "shared/partials/navigation" , locals: { title: "Edit #{@set.class::NAME}"} %>
 
 <div class="list-exercises d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
   <div class="exercise-list-wrapper list-group">

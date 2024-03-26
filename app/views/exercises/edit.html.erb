@@ -1,11 +1,6 @@
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
-            <h1>Update <%= @exercise.name %></h1>
-        </div>
-    </div>
-</div>
+<%= render partial: "shared/partials/navigation" , locals: { title: "Update #{@exercise.name}", exercise: @exercise} %>
 
+<div class="py-2"></div>
 <%= render "form", exercise: @exercise, method: :edit %>
 
 <div class="d-flex gap-2 justify-content-center py-2">

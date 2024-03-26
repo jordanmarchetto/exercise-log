@@ -1,0 +1,53 @@
+<nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <%= title %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark"
+      aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbarDark"
+      aria-labelledby="offcanvasNavbarDarkLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">
+          <%= title %>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <% if @exercise&.description.present? %>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">
+                <%= @exercise.description %>
+              </a>
+            </li>
+            <% end %>
+          <% if @exercise.present? %>
+              <li class="nav-item">
+                <%= link_to edit_exercise_path(@exercise), class: "nav-link" do %>
+                  <i class="bi bi-pencil-fill"></i>
+                  Edit Exercise
+                  <% end %>
+              </li>
+            <% end %>
+                        <% if @exercise.present? %>
+              <li class="nav-item">
+                <%= button_to exercise_path(@exercise), method: :delete, class: "nav-link" do %>
+                  <i class="bi bi-trash3-fill"></i>
+                  Delete Exercise
+                  <% end %>
+              </li>
+            <% end %>
+              <li class="nav-item">
+                <%= link_to exercises_path, class: "nav-link" do %>
+                  <i class="bi bi-chevron-left"></i>
+                  Exercise List
+                  <% end %>
+              </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
