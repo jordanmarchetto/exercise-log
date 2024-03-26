@@ -1,0 +1,5 @@
+<% if sets.any? { |workout_set| workout_set.is_a?(WeightWorkoutSet) } %>
+  <div class="d-flex flex-column flex-md-row p-1 gap-4 py-md-1 align-items-center justify-content-center">
+    Estimated 1RM: <%= calc_1rm(sets) %> (last <%= sets.count %> sets)
+  </div>
+<% end %>

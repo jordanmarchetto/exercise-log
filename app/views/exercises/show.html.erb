@@ -7,11 +7,11 @@
   <div class="recent-sets-list list-group">
     <% @sets.each do |set| %>
       <%= render partial: "shared/partials/recent_set" , locals: { set: set} %>
-        <% end %>
+    <% end %>
   </div>
 </div>
 
-
+<%= render partial: "shared/partials/rep_max_calc" , locals: { sets: @sets} %>
 
 <div class="d-flex flex-column flex-md-row p-1 align-items-center justify-content-center">
   <h2 class="display-5 fw-bold text-body-emphasis">Log Set</h2>
