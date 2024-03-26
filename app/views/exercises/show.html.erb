@@ -69,7 +69,7 @@
   <div class="log-set-forms-list list-group">
 
     <% @exercise.set_types.each do |set_type| %>
-      <%= render partial: "shared/partials/log_set_form" , locals: { set_type: set_type, exercise: @exercise} %>
+      <%= render partial: "shared/partials/log_set_form" , locals: { set_type: set_type, exercise: @exercise, method: 'create'} %>
     <% end %>
   </div>
 </div>

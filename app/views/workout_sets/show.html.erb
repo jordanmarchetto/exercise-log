@@ -1,0 +1,13 @@
+<nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      Edit <%= @set.class::NAME %>
+    </a>
+  </div>
+</nav>
+
+<div class="list-exercises d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
+  <div class="exercise-list-wrapper list-group">
+    <%= render partial: "shared/partials/log_set_form" , locals: { set_type: @set.type, set: @set, exercise: @set.exercise, method: 'save' } %>
+  </div>
+</div>

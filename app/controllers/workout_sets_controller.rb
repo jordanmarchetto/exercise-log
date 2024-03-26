@@ -3,7 +3,7 @@ class WorkoutSetsController < ApplicationController
   def create
     #TODO: add param parsing
     exercise = Exercise.find(params[:exercise_id])
-    @set = WorkoutSet.new(exercise: exercise, type: params[:type], rep_count: params[:rep_count].to_i, rep_value: params[:rep_value].to_i, rpe: params[:rpe].to_f, distance: params[:distance].to_i, distance_unit: params[:distance_unit], duration: params[:duration].to_f, timer_direction: params[:timer_direction] )
+    @set = WorkoutSet.new(workout_set_params)
 
     if @set.save
       redirect_to exercise
@@ -11,5 +11,41 @@ class WorkoutSetsController < ApplicationController
       redirect_to exercise
       # render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @set = WorkoutSet.find(params[:id])
+  end
+
+  def edit
+    @set = WorkoutSet.find(params[:id])
+  end
+
+  def update
+    @set = WorkoutSet.find(params[:id])
+
+    if @set.update(workout_set_params)
+      redirect_to @set.exercise
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @set = WorkoutSet.find(params[:id])
+    @set.destroy
+
+    redirect_to root_path, status: :see_other
+  end
+
+  private
+
+  def workout_set_params
+    rep_count = params[:rep_count].to_i
+    rep_value = params[:rep_value].to_i
+    rpe = params[:rpe].to_i
+    distance = params[:distance].to_i
+    duration = params[:duration].to_f
+    params.permit(:exercise_id, :created_at, :type, :timer_direction, :distance_unit).merge(rep_count: rep_count, rep_value: rep_value, rpe: rpe, distance: distance, duration: duration)
   end
 end
