@@ -1,3 +1,7 @@
+<% set = nil if local_assigns[:set].nil? %>
+<% exercise = nil if local_assigns[:exercise].nil? %>
+
+
 <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
@@ -17,27 +21,35 @@
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <% if @exercise&.description.present? %>
+          <% if exercise&.description.present? %>
             <li class="nav-item">
               <a class="nav-link disabled" aria-disabled="true">
-                <%= @exercise.description %>
+                <%= exercise.description %>
               </a>
             </li>
             <% end %>
-          <% if @exercise.present? %>
+            <% if exercise.present? %>
               <li class="nav-item">
-                <%= link_to edit_exercise_path(@exercise), class: "nav-link" do %>
+                <%= link_to edit_exercise_path(exercise), class: "nav-link" do %>
                   <i class="bi bi-pencil-fill"></i>
                   Edit Exercise
                   <% end %>
               </li>
             <% end %>
-                        <% if @exercise.present? %>
+            <% if exercise.present? %>
               <li class="nav-item">
-                <%= button_to exercise_path(@exercise), method: :delete, class: "nav-link" do %>
+                <%= button_to exercise_path(exercise), method: :delete, class: "nav-link" do %>
                   <i class="bi bi-trash3-fill"></i>
                   Delete Exercise
                   <% end %>
+              </li>
+            <% end %>
+            <% if set.present? && set.id.present? && exercise && exercise.id.present? %>
+              <li class="nav-item">
+                <%= button_to exercise_workout_set_path(exercise, set), method: :delete, class: "nav-link" do %>
+                  <i class="bi bi-trash3-fill"></i>
+                  Delete Set
+                <% end %>
               </li>
             <% end %>
               <li class="nav-item">

@@ -33,9 +33,10 @@ class WorkoutSetsController < ApplicationController
 
   def destroy
     @set = WorkoutSet.find(params[:id])
+    exercise = @set.exercise
     @set.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to exercise, status: :see_other
   end
 
   private

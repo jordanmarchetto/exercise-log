@@ -1,4 +1,4 @@
-<%= render partial: "shared/partials/navigation" , locals: { title: "Edit #{@set.class::NAME}"} %>
+<%= render partial: "shared/partials/navigation" , locals: { title: "Edit #{@set.class::NAME}", exercise: @set.exercise, set: @set} %>
 
 <div class="list-exercises d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
   <div class="exercise-list-wrapper list-group">
