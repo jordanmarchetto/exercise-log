@@ -1,7 +1,10 @@
 <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <%= @set.created_at %>
+      Edit <%= @set.class::NAME %>
     </a>
     </div>
     </nav>
+
+
+    <%= render partial: "shared/partials/log_set_form" , locals: { set_type: @set.type, set: @set, exercise: @set.exercise, method: 'save' } %>

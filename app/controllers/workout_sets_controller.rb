@@ -46,6 +46,6 @@ class WorkoutSetsController < ApplicationController
     rpe = params[:rpe].to_i
     distance = params[:distance].to_i
     duration = params[:duration].to_f
-    params.permit(:exercise_id, :type, :timer_direction, :distance_unit).merge(rep_count: rep_count, rep_value: rep_value, rpe: rpe, distance: distance, duration: duration)
+    params.permit(:exercise_id, :created_at, :type, :timer_direction, :distance_unit).merge(rep_count: rep_count, rep_value: rep_value, rpe: rpe, distance: distance, duration: duration)
   end
 end

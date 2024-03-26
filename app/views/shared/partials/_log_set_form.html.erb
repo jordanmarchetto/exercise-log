@@ -9,6 +9,12 @@
         <h6>
           <%= "#{set_type}:" %>
         </h6>
+        <% if @set.created_at %>
+        <div class="form-floating py-2">
+          <%= text_field_tag :created_at, @set.created_at, class: 'form-control' , placeholder: 'Created At' %>
+            <%= form.label :created_at %>
+        </div>
+        <% end %>
         <% if set_type.constantize.has_weight? %>
           <div class="form-floating py-2">
             <%= number_field_tag :rep_value, @set.rep_value, class: 'form-control' , placeholder: 'Weight' %>
@@ -60,7 +66,7 @@
                   <%= render partial: "shared/partials/rpe_guidelines" %>
                   <% end %>
 
-                      <% if method=="create" %>
+                      <% if method == "create" %>
                         <button type="submit" class="btn btn-success">
                           <i class="bi bi-plus-circle-fill"></i>
                           Log Set
@@ -70,6 +76,10 @@
                           <i class="bi bi-save"></i>
                           Save Set
                         </button>
+                        <a href="<%= exercise_path(exercise)%>" class="btn btn-success">
+                          <i class="bi bi-save"></i>
+                          Cancel
+                        </a>
                       <% end %>
                     <% end %>
   </div>
