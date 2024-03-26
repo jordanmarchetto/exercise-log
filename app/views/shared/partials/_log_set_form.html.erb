@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="list-group-item rounded-3 py-3 my-1">
-    <%= form_for @set, url: exercise_workout_sets_path(exercise.id) do |form|%>
+    <%= form_for @set, url: method=="create" ? exercise_workout_sets_path(exercise.id) : exercise_workout_set_path(exercise.id, @set.id), method: method=="create" ? :post : :patch do |form|%>
       <%= hidden_field_tag "type" , "#{set_type}" %>
 
         <h6>
@@ -11,14 +11,14 @@
         </h6>
         <% if set_type.constantize.has_weight? %>
           <div class="form-floating py-2">
-            <%= number_field_tag :rep_value, nil, class: 'form-control' , placeholder: 'Weight' %>
+            <%= number_field_tag :rep_value, @set.rep_value, class: 'form-control' , placeholder: 'Weight' %>
               <%= form.label :weight %>
           </div>
           <% end %>
 
             <% if set_type.constantize.has_reps? %>
               <div class="form-floating py-2">
-                <%= number_field_tag :rep_count, nil, class: 'form-control', id: 'rep-count', placeholder: 'Reps' %>
+                <%= number_field_tag :rep_count, @set.rep_count, class: 'form-control', id: 'rep-count', placeholder: 'Reps' %>
                   <%= form.label :rep_count %>
               </div>
               <div class="form-floating py-2 text-center" id="shortcut-buttons">
@@ -34,7 +34,7 @@
 
             <% if set_type.constantize.has_distance? %>
               <div class="form-floating py-2">
-                <%= text_field_tag :distance, nil, class: 'form-control' , placeholder: 'Distance' %>
+                <%= text_field_tag :distance, @set.distance, class: 'form-control' , placeholder: 'Distance' %>
                   <%= form.label :distance %>
               </div>
 
@@ -46,7 +46,7 @@
 
             <% if set_type.constantize.has_duration? %>
               <div class="form-floating py-2">
-                <%= text_field_tag :duration, nil, class: 'form-control' , placeholder: 'Duration (seconds)' %>
+                <%= text_field_tag :duration, @set.duration, class: 'form-control' , placeholder: 'Duration (seconds)' %>
                   <%= form.label :duration %>
               <%= hidden_field_tag "timer_direction" , "#{:up}" %>
               </div>
@@ -54,15 +54,22 @@
 
                 <% if set_type.constantize.has_rpe? %>
                   <div class="form-floating py-2">
-                    <%= number_field_tag :rpe, nil, class: 'form-control' , placeholder: 'RPE' %>
+                    <%= number_field_tag :rpe, @set.rpe, class: 'form-control' , placeholder: 'RPE' %>
                       <%= form.label :rpe %>
                   </div>
                   <%= render partial: "shared/partials/rpe_guidelines" %>
                   <% end %>
 
-                    <button type="submit" class="btn btn-success">
-                      <i class="bi bi-plus-circle-fill"></i>
-                      Log Set
-                    </button>
+                      <% if method=="create" %>
+                        <button type="submit" class="btn btn-success">
+                          <i class="bi bi-plus-circle-fill"></i>
+                          Log Set
+                        </button>
+                      <% else %>
+                        <button type="submit" class="btn btn-success">
+                          <i class="bi bi-save"></i>
+                          Save Set
+                        </button>
+                      <% end %>
                     <% end %>
   </div>
