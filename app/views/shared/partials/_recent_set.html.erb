@@ -35,6 +35,9 @@
                 </div>
                 <small class="opacity-50 text-nowrap">
                     <%= display_time(set.created_at) %> - <%= display_date(set.created_at) %>
+                    <% if set.type == WeightWorkoutSet.name %>
+                        <span class="opacity-50"><br />Est 1RM: <%= calc_1rm([set])%>lbs</span>
+                    <% end %>
                 </small>
             </div>
 </a>
