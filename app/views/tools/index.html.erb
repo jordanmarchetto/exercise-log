@@ -1,0 +1,25 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "tools.js" %>
+<% end %>
+
+<%= render partial: "shared/partials/navigation" , locals: { title: "Tools" } %>
+
+<div class="d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
+    <form>
+        <div class="mb-3">
+            <h3 class="mb-3">Estimated Max</h3>
+        </div>
+        <div class="mb-3">
+          <label for="weight" class="form-label">Weight</label>
+          <input type="number" class="form-control max-calc-input" id="weight" >
+        </div>
+        <div class="mb-3">
+          <label for="reps" class="form-label">Reps</label>
+          <input type="number" class="form-control max-calc-input" id="reps">
+        </div>
+        <button type="submit" class="btn btn-primary" id="calculate-button">Calculate</button>
+        <div class="gap-4 py-3">
+          <span id="estimated-max"></span>
+        </div>
+      </form>
+</div>
