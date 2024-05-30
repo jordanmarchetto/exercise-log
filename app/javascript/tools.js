@@ -1,5 +1,5 @@
 //initialize the tools
-var initToolsControls = () => {
+const initToolsControls = () => {
     const button = document.querySelectorAll('#calculate-button')[0];
     const inputs = document.querySelectorAll('.max-calc-input');
     
@@ -22,7 +22,7 @@ var initToolsControls = () => {
     });
 
     //bind input change
-    inputs.forEach((inp)=> {
+    inputs.forEach((inp) => {
         inp.addEventListener('change', function(e, target) {
             updateValue();
         });
