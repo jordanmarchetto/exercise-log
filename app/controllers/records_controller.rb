@@ -1,9 +1,10 @@
 class RecordsController < ApplicationController
   def index
-    # This is where you can fetch data for your view if needed
+    # fetch all exercises that we track totals, then calc the totals
     @exercises = Exercise.where(show_on_records: true)
+
     real_total = @exercises.reduce(0) { |sum, exercise| sum + exercise.highest_weight }
-    estimated_total = @exercises.reduce(0) { |sum, exercise| sum + exercise.estimated_highest_weight }
+    estimated_total = @exercises.reduce(0) { |sum, exercise| sum + exercise.estimated_highest_set.rep_value }
     @totals = {real_total:, estimated_total:}
   end
 end

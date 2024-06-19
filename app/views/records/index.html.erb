@@ -3,16 +3,16 @@
 <div class="list-exercises d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
     <div class="exercise-list-wrapper list-group">    
         <h2 class="mb-3">Records</h2>
-    <% @exercises.each do |exercise| %>
-        <p><strong><%= exercise.name%></strong>
-            <br>Heaviest: <%= exercise.highest_weight %>lbs.
-            <br>Estimated Max: <%= exercise.estimated_highest_weight %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
+        <% @exercises.each do |exercise| %>
+            <p><strong><%= exercise.name%></strong>
+                <br>Heaviest: <%= exercise.highest_weight %>lbs.
+                <br>Estimated Max: <%= exercise.estimated_highest_set.rep_value %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
+            </p>
+        <% end %>
+        <p><strong>Total</strong>
+            <br>Real: <%= @totals[:real_total] %>lbs.
+            <br>Estimated: <%= @totals[:estimated_total] %>lbs.
         </p>
-    <% end %>
-    <p><strong>Total</strong>
-        <br>Real: <%= @totals[:real_total] %>lbs.
-        <br>Estimated: <%= @totals[:estimated_total] %>lbs.
-    </p>
-        </div>
+    </div>
 </div>
 

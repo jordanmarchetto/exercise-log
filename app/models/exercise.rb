@@ -12,13 +12,7 @@ class Exercise < ApplicationRecord
         weight_workout_sets.sort_by(&:rep_value).pluck(:rep_value).last.round(2)
     end
 
-    def estimated_highest_weight
-        estimated_weights = weight_workout_sets.map do |set|
-            (set.rep_count * set.rep_value * 0.0333) + set.rep_value
-        end
-        estimated_weights.sort.last.round(2)
-    end
-
+    # do the estimated weight calc on every set and return the "best" set
     def estimated_highest_set
         estimated_weights = weight_workout_sets.map do |set|
             { weight: (set.rep_count * set.rep_value * 0.0333) + set.rep_value, set:}
