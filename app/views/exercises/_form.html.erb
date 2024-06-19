@@ -32,14 +32,12 @@
           <h3 class="fs-2 text-body-emphasis">Set Types:</h3>
           <div class="list-group">
             <% WorkoutSet.descendants.each do |set_type| %>
-
-            <label class="list-group-item d-flex gap-2">
-              <%= check_box_tag "set_types[#{set_type.name}]", class: "form-check-input flex-shrink-0" %>
-
-              <span>
-              <%= set_type::NAME %> - <%= set_type::DESCRIPTION %> 
-              </span>
-            </label>
+              <label class="list-group-item d-flex gap-2">
+                <%= check_box_tag "exercise[set_types][]", set_type.name, @exercise.set_types.include?(set_type.name), class: "form-check-input flex-shrink-0" %>
+                <span>
+                  <%= set_type::NAME %> - <%= set_type::DESCRIPTION %>
+                </span>
+              </label>
             <% end %>
           </div>
         </div>

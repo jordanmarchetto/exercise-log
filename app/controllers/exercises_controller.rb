@@ -47,11 +47,6 @@ class ExercisesController < ApplicationController
   private
 
   def exercise_params
-    filtered_params = params.require(:exercise).permit(:name, :description, :show_on_records, set_types: [])
-
-    if params[:set_types]
-      filtered_params[:set_types] = params[:set_types].keys
-    end
-    filtered_params
+    params.require(:exercise).permit(:name, :description, :show_on_records, set_types: [])
   end
 end
