@@ -4,8 +4,7 @@ module WorkoutSetsHelper
     sets.each do |set|
       next unless set.is_a?(WeightWorkoutSet) && set.rep_value
 
-      max = (set.rep_count * set.rep_value * 0.0333) + set.rep_value
-      best_max = max if max > best_max
+      best_max = set.estimated_max if set.estimated_max > best_max
     end
     best_max.to_i
   end

@@ -14,27 +14,30 @@
 
       <%= form_with model: @exercise do |form| %>
         <div class="form-floating py-2">
-          <%= text_field_tag :name, exercise.name, class: 'form-control' , placeholder: 'Name' %>
+          <%= form.text_field :name, class: 'form-control', placeholder: 'Name' %>
           <%= form.label :name %>
         </div>
 
         <div class="form-floating py-2">
-          <%= text_area_tag :description, exercise.description, class: 'form-control' , placeholder: 'Description' %>
+          <%= form.text_area :description, class: 'form-control', placeholder: 'Description' %>
           <%= form.label :description %>
         </div>
+
+        <div class="form-check">
+          <%= form.check_box :show_on_records, class: 'form-check-input', id: 'show_on_records_check' %>
+          <%= form.label :show_on_records, "Show on records page?", class: "form-check-label", for: 'show_on_records_check' %>
+        </div>      
 
         <div class="form-floating py-2">
           <h3 class="fs-2 text-body-emphasis">Set Types:</h3>
           <div class="list-group">
             <% WorkoutSet.descendants.each do |set_type| %>
-
-            <label class="list-group-item d-flex gap-2">
-              <%= check_box_tag "set_types[#{set_type.name}]", class: "form-check-input flex-shrink-0" %>
-
-              <span>
-              <%= set_type::NAME %> - <%= set_type::DESCRIPTION %> 
-              </span>
-            </label>
+              <label class="list-group-item d-flex gap-2">
+                <%= check_box_tag "exercise[set_types][]", set_type.name, @exercise.set_types.include?(set_type.name), class: "form-check-input flex-shrink-0" %>
+                <span>
+                  <%= set_type::NAME %> - <%= set_type::DESCRIPTION %>
+                </span>
+              </label>
             <% end %>
           </div>
         </div>
