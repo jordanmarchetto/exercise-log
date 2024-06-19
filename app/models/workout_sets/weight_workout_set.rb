@@ -17,6 +17,6 @@ class WeightWorkoutSet < WorkoutSet
   end
 
   def estimated_max
-    ((rep_count * rep_value * 0.0333) + rep_value).round(2)
+    ((rep_count * rep_value * 0.0333) + rep_value).round(0)
   end
 end

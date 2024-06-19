@@ -9,7 +9,7 @@ class Exercise < ApplicationRecord
     end
 
     def highest_weight
-        weight_workout_sets.sort_by(&:rep_value).pluck(:rep_value).last.round(2)
+        weight_workout_sets.sort_by(&:rep_value).pluck(:rep_value).last.floor
     end
 
     # do the estimated weight calc on every set and return the "best" set
