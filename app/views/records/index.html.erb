@@ -1,0 +1,21 @@
+<%= render partial: "shared/partials/navigation" , locals: { title: "Tools" } %>
+
+<div class="list-exercises d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
+    <div class="exercise-list-wrapper list-group">    
+        <h2 class="mb-3">Records</h2>
+    <% @exercises.each do |exercise| %>
+        <h3><%= exercise.name%></h3>
+            <ul>
+                <li><%= exercise.highest_weight %>lbs.</li>
+                <li><%= exercise.estimated_highest_weight %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
+            </ul>
+    <% end %>
+        </div>
+</div>
+
+
+<h2>Totals:</h2>
+<ul>
+    <li><%= @totals[:real_total] %></li>
+    <li><%= @totals[:estimated_total] %> (estimated)</li>
+</ul>
