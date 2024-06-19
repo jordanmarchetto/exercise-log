@@ -4,18 +4,15 @@
     <div class="exercise-list-wrapper list-group">    
         <h2 class="mb-3">Records</h2>
     <% @exercises.each do |exercise| %>
-        <h3><%= exercise.name%></h3>
-            <ul>
-                <li><%= exercise.highest_weight %>lbs.</li>
-                <li><%= exercise.estimated_highest_weight %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
-            </ul>
+        <p><strong><%= exercise.name%></strong>
+            <br>Heaviest: <%= exercise.highest_weight %>lbs.
+            <br>Estimated Max: <%= exercise.estimated_highest_weight %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
+        </p>
     <% end %>
+    <p><strong>Total</strong>
+        <br>Real: <%= @totals[:real_total] %>lbs.
+        <br>Estimated: <%= @totals[:estimated_total] %>lbs.
+    </p>
         </div>
 </div>
 
-
-<h2>Totals:</h2>
-<ul>
-    <li><%= @totals[:real_total] %></li>
-    <li><%= @totals[:estimated_total] %> (estimated)</li>
-</ul>
