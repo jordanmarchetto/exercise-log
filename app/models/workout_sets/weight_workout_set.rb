@@ -15,4 +15,8 @@ class WeightWorkoutSet < WorkoutSet
   def self.has_rpe?
     true
   end
+
+  def estimated_max
+    ((rep_count * rep_value * 0.0333) + rep_value).round(2)
+  end
 end

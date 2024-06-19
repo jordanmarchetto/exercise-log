@@ -6,7 +6,7 @@
         <% @exercises.each do |exercise| %>
             <p><strong><%= exercise.name%></strong>
                 <br>Heaviest: <%= exercise.highest_weight %>lbs.
-                <br>Estimated Max: <%= exercise.estimated_highest_set.rep_value %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
+                <br>Estimated Max: <%= exercise.estimated_highest_set.estimated_max %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
             </p>
         <% end %>
         <p><strong>Total</strong>
