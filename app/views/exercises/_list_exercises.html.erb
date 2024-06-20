@@ -12,7 +12,8 @@
           <div class="exercise-name-wrapper d-flex gap-2 w-100 justify-content-between ">
             <div>
               <h6 class="mb-0">
-                <%= exercise.name %>
+                <%= exercise.name %> <% if exercise.show_on_records? %> <span class="exercise-icon bi bi-star-fill small-icon"></span> <% end %>
+ 
               </h6>
             </div>
           </div>

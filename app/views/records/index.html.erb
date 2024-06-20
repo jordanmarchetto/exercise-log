@@ -1,4 +1,4 @@
-<%= render partial: "shared/partials/navigation" , locals: { title: "Tools" } %>
+<%= render partial: "shared/partials/navigation" , locals: { title: "Records" } %>
 
 <div class="list-exercises d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
     <div class="exercise-list-wrapper list-group">    
@@ -9,6 +9,7 @@
                 <br>Estimated Max: <%= exercise.estimated_highest_set.estimated_max %>lbs. (<%= exercise.estimated_highest_set.rep_value %>lbs. x <%= exercise.estimated_highest_set.rep_count %>)</li>
             </p>
         <% end %>
+        <hr />
         <p><strong>Total</strong>
             <br>Real: <%= @totals[:real_total] %>lbs.
             <br>Estimated: <%= @totals[:estimated_total] %>lbs.
