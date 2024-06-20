@@ -46,11 +46,10 @@
                   <%= form.label :distance %>
               </div>
 
-              <div class="form-floating py-2">
-                <%= text_field_tag :distance_unit, 'miles', class: 'form-control' , placeholder: 'Distance Unit' %>
-                  <%= form.label :distance_unit %>
+              <div class="py-2">
+                <%= select_tag :distance_unit, options_for_select(Constants::DISTANCE_UNITS), { include_blank: 'Select Distance Unit', class: 'form-select' } %>
               </div>
-              <% end %>
+            <% end %>
 
             <% if set_type.constantize.has_duration? %>
               <div class="form-floating py-2">
