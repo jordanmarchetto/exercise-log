@@ -17,6 +17,7 @@ class Exercise < ApplicationRecord
     # do the estimated weight calc on every set and return the "best" set
     def estimated_highest_set
         return if weight_workout_sets.empty?
+
         estimated_weights = weight_workout_sets.map do |set|
             { weight: set.estimated_max, set:}
         end

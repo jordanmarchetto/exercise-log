@@ -47,3 +47,15 @@
 .log-set-forms-list{
     @include generic-list;
 }
+
+.recent-workout-list-wrapper{
+    @include generic-list;
+
+    .workout {
+        &:not(:first-child) {
+          // Styles for .workout elements that are not the first child
+          border-top: 2px solid var(--bs-body-color); // Same border style as above, just an example
+        }
+      }
+
+}

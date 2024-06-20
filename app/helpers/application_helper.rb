@@ -8,6 +8,10 @@ module ApplicationHelper
     timestamp.strftime("%m/%d/%Y")
   end
 
+  def display_date_long(timestamp)
+    timestamp.strftime("%A, %B %e, %Y")
+  end
+
   def javascript_constants
     "<script>window.Constants = #{constants_to_json.html_safe};</script>".html_safe
   end
