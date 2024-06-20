@@ -54,10 +54,14 @@
             <% if set_type.constantize.has_duration? %>
               <div class="form-floating py-2">
                 <%= text_field_tag :duration, @set.duration, class: 'form-control' , placeholder: 'Duration (seconds)' %>
-                  <%= form.label :duration %>
-              <%= hidden_field_tag "timer_direction" , "#{:up}" %>
+                <%= form.label :duration %>
+                <%= hidden_field_tag "timer_direction" , "#{:up}" %>
               </div>
-              <% end %>
+
+              <div class="py-2">
+                <%= select_tag :duration_unit, options_for_select(Constants::TIME_UNITS), { include_blank: 'Select Time Unit', class: 'form-select' } %>
+              </div>
+            <% end %>
 
                 <% if set_type.constantize.has_rpe? %>
                   <div class="form-floating py-2">

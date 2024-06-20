@@ -30,7 +30,7 @@
   s = WeightWorkoutSet.new(exercise: Exercise.first, rep_value: 155, rep_count: 5,rpe: 9)
   s.save!
 
-  s = DistanceWorkoutSet.new(exercise: Exercise.find(5), distance: 5, distance_unit: "miles", duration: 60)
+  s = DistanceWorkoutSet.new(exercise: Exercise.find(5), distance: 5, distance_unit: "mi", duration: 60)
   s.save!
-  s = DistanceWorkoutSet.new(exercise: Exercise.find(6), distance: 5, distance_unit: "meters", duration: 60)
+  s = DistanceWorkoutSet.new(exercise: Exercise.find(6), distance: 5, distance_unit: "m", duration: 60)
   s.save!

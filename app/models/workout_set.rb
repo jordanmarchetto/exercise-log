@@ -23,6 +23,10 @@ class WorkoutSet < ApplicationRecord
     self[:timer_direction] ? TimerDirections::UP : TimerDirections::DOWN
   end
 
+  def duration_unit
+    super || ' seconds'
+  end
+
   def self.has_reps?
     false
   end
