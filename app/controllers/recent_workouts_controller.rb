@@ -1,4 +1,6 @@
 class RecentWorkoutsController < ApplicationController
+  WORKOUTS_TO_FETCH = 5
+
   def index
     # Example:
     # @workouts = [
@@ -13,7 +15,7 @@ class RecentWorkoutsController < ApplicationController
     #   ]
 
     # fetch all workout sets, find the last 3 dates
-    recent_dates = WorkoutSet.select("DISTINCT DATE(created_at) AS created_date").order("created_date DESC").limit(3).map{|r| r.created_date}
+    recent_dates = WorkoutSet.select("DISTINCT DATE(created_at) AS created_date").order("created_date DESC").limit(WORKOUTS_TO_FETCH).map{|r| r.created_date}
 
     # for each of those dates, find which exercises were done
     exercise_ids = WorkoutSet.where("DATE(created_at) IN (?)", recent_dates).pluck(:exercise_id).uniq
