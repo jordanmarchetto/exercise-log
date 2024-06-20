@@ -11,7 +11,7 @@ const initToolsControls = () => {
         if(isNaN(estMax)){
             display.textContent =  "";
         } else {
-            display.textContent =  "Estimated Max: " + estMax + " lbs.";
+            display.textContent =  "Estimated Max: " + estMax + window.Constants.weight_unit;
         }
     }
     
