@@ -55,7 +55,10 @@
               <div class="form-floating py-2">
                 <%= text_field_tag :duration, @set.duration, class: 'form-control' , placeholder: 'Duration (seconds)' %>
                 <%= form.label :duration %>
-                <%= hidden_field_tag "timer_direction" , "#{:up}" %>
+              </div>
+
+              <div class="py-2">
+                <%= select_tag :timer_direction, options_for_select(['up', 'down']), { include_blank: 'Select Timer Direction (Not Implemented)', class: 'form-select' } %>
               </div>
 
               <div class="py-2">
