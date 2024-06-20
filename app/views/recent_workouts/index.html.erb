@@ -1,0 +1,16 @@
+<%= render partial: "shared/partials/navigation" , locals: { title: "Recent Workouts" } %>
+
+<div class="p-2 gap-4 py-md-2 align-items-center justify-content-center">
+   asdf
+
+   <% @workouts.each do |workout| %>
+    <p>workout:
+    <% workout[:sets].each do |set| %>
+     <br />
+     set:
+     <%=set.inspect%>
+    <% end %>
+    </p>
+   <% end %>
+   
+</div>

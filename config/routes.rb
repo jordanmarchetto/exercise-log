@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'recent_workouts', to: 'recent_workouts#index'
   get 'tools', to: 'tools#index'
   get 'records', to: 'records#index'
 
