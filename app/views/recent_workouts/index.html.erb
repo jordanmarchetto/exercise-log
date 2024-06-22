@@ -15,7 +15,7 @@
                         <h4><span class="exercise-icon bi <%= display_icon(exercise) %>"> </span><%= exercise.name %></h4>
                         <% movement[:sets].each do |set| %>
                             <div class="set">
-                                <%= render partial: "shared/partials/recent_set" , locals: { set: set} %>
+                                <%= render partial: "shared/partials/recent_set" , locals: { set: set, show_date: false } %>
                             </div>
                         <% end %>
                     </div>

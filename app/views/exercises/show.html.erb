@@ -6,7 +6,7 @@
 <div class="d-flex flex-column flex-md-row p-1 gap-4 py-md-1 align-items-center justify-content-center">
   <div class="recent-sets-list list-group">
     <% @sets.each do |set| %>
-      <%= render partial: "shared/partials/recent_set" , locals: { set: set} %>
+      <%= render partial: "shared/partials/recent_set" , locals: { set: set, show_date: true } %>
     <% end %>
   </div>
 </div>
