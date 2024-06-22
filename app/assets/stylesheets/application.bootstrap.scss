@@ -71,3 +71,8 @@ body {
       }
 
 }
+
+a.clickable-text{
+    text-decoration: none;
+    color: var(--bs-body-color);
+}
