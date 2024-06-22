@@ -5,7 +5,7 @@ class ExercisesController < ApplicationController
 
   def show
     @exercise = Exercise.find(params[:id])
-    @sets = WorkoutSet.where(exercise: @exercise).order("created_at DESC")
+    @sets = WorkoutSet.where(exercise: @exercise).order("created_at DESC").limit(100)
     @set = WorkoutSet.new
   end
 
