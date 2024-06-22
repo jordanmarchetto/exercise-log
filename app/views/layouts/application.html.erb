@@ -9,6 +9,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= javascript_constants %>
+    <%= favicon_link_tag 'favicon/favicon.ico' %>
+    <%= favicon_link_tag 'favicon/favicon-32x32.png', rel: 'icon', type: 'image/png' %>
+    <%= favicon_link_tag 'favicon/apple-touch-icon.png', rel: 'apple-touch-icon', sizes: '180x180' %>
   </head>
 
   <body class="d-flex flex-column h-100">
