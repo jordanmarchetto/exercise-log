@@ -11,8 +11,8 @@
         </h6>
         <% if @set.created_at %>
         <div class="form-floating py-2">
-          <%= text_field_tag :created_at, @set.created_at, class: 'form-control' , placeholder: 'Created At' %>
-            <%= form.label :created_at %>
+          <%= datetime_local_field_tag :created_at, @set.created_at.strftime('%Y-%m-%dT%H:%M'), class: 'form-control', placeholder: 'Created at' %>
+          <%= form.label :created_at %>
         </div>
         <% end %>
         <% if set_type.constantize.has_weight? %>

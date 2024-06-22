@@ -14,8 +14,8 @@
     <%= favicon_link_tag 'favicon/apple-touch-icon.png', rel: 'apple-touch-icon', sizes: '180x180' %>
   </head>
 
-  <body class="d-flex flex-column h-100">
-    <div class="main">
+  <body>
+    <div class="main d-flex flex-column h-100">
       <%= yield %>
       <%= render partial: "shared/partials/footer" %>
     </div>
