@@ -15,8 +15,10 @@
   </head>
 
   <body class="d-flex flex-column h-100">
-    <%= yield %>
-    <%= render partial: "shared/partials/footer" %>
+    <div class="main">
+      <%= yield %>
+      <%= render partial: "shared/partials/footer" %>
+    </div>
   </body>
   <%= yield :javascript_includes %>
 </html>

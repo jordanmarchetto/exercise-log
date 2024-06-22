@@ -12,9 +12,21 @@
     max-height: 400px;
 }
 
-/* we'll add our own error messages */
 .field_with_errors {
     display: none;
+}
+
+body {
+    background-image: url('logo.png');
+    background-size: cover; /* Adjusts the size of the background image */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position-y: 60px;
+}
+
+.main{
+    background: white;
+    opacity: .95;
 }
 
 .list-exercises {
