@@ -23,4 +23,8 @@ class Exercise < ApplicationRecord
         end
         estimated_weights.sort_by { |set| set[:weight] }.last[:set]
     end
+
+    def highest_estimated_weight
+        estimated_highest_set&.estimated_max
+    end
 end
