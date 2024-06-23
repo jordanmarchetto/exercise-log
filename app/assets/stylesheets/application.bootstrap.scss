@@ -3,8 +3,12 @@
 
 
 @mixin generic-list {
-    max-width: 75%;
-    width: 600px;  
+    max-width: 95%;
+    width: 100%;
+    @media screen and (min-width: var(--bs-breakpoint-lg)) {
+        max-width: 75%;
+        width: 600px;
+    }
 }
 
 @mixin scrollable {
