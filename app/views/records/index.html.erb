@@ -20,6 +20,6 @@
 <div class="progress-chart-container">
     <div>
         <h2 class="mb-3">Progress <span class="description">(past <%= Constants::MAX_PROGRESS_HISTORY %> days)</span></h2>
-        <%= line_chart @chart_data, suffix: Constants::WEIGHT_UNIT, download: {filename: "progress_chart", background: "#ffffff"} %>
+        <%= line_chart @chart_data, suffix: Constants::WEIGHT_UNIT, download: {filename: "progress_chart", background: "#ffffff"}, library: {spanGaps: true} %>
     </div>
 </div>
