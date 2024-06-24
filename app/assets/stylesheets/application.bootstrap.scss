@@ -58,6 +58,11 @@ body {
 .progress-chart-container {
     margin: 0 auto;
     width: 95%;
+    .description{
+        font-size: var(--bs-body-font-size);
+        font-style: italic;
+        font-weight: var(--bs-body-font-weight);
+    }
 }
 
 .recent-sets-list {
