@@ -28,10 +28,14 @@ body {
     background-position-y: 60px;
 }
 
-.main{
+.main {
     background: white;
     opacity: .95;
     min-height: 100vh;
+}
+
+.body-container {
+    @include generic-list;
 }
 
 .list-exercises {
@@ -51,21 +55,26 @@ body {
     }
 }
 
-.recent-sets-list{
+.progress-chart-container {
+    margin: 0 auto;
+    width: 95%;
+}
+
+.recent-sets-list {
     @include generic-list;
     @include scrollable;
-    .recent-set-item{
-        .rpe-icon{
+    .recent-set-item {
+        .rpe-icon {
             font-size: 25px;
         }
     }
 }
 
-.log-set-forms-list{
+.log-set-forms-list {
     @include generic-list;
 }
 
-.recent-workout-list-wrapper{
+.recent-workout-list-wrapper {
     @include generic-list;
 
     .workout {
@@ -76,7 +85,7 @@ body {
 
 }
 
-a.clickable-text{
+a.clickable-text {
     text-decoration: none;
     color: var(--bs-body-color);
 }
