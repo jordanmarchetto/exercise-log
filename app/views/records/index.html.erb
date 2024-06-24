@@ -1,12 +1,12 @@
-<%= render partial: "shared/partials/navigation" , locals: { title: "Records" } %>
+<%= render partial: "shared/partials/navigation" , locals: { title: "Records / Progress" } %>
 
-<div class="list-exercises d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
-    <div class="exercise-list-wrapper list-group">    
+<div class="body-container d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
+    <div>
         <h2 class="mb-3">Records</h2>
         <% @exercises.each do |exercise| %>
             <p><strong><%= exercise.name%></strong>
                 <br>Heaviest: <%= exercise.highest_weight %><%= Constants::WEIGHT_UNIT %>
-                <br>Estimated Max: <%= (exercise.estimated_highest_set&.estimated_max || 0) %><%= Constants::WEIGHT_UNIT %> (<%= exercise.estimated_highest_set&.rep_value %><%= Constants::WEIGHT_UNIT %> x <%= exercise.estimated_highest_set&.rep_count %>)</li>
+                <br>Estimated Max: <%= (exercise.highest_estimated_weight || 0) %><%= Constants::WEIGHT_UNIT %> (<%= exercise.estimated_highest_set&.rep_value %><%= Constants::WEIGHT_UNIT %> x <%= exercise.estimated_highest_set&.rep_count %>)</li>
             </p>
         <% end %>
         <hr />
@@ -14,5 +14,12 @@
             <br>Real: <%= @totals[:real_total] %><%= Constants::WEIGHT_UNIT %>
             <br>Estimated: <%= @totals[:estimated_total] %><%= Constants::WEIGHT_UNIT %>
         </p>
+    </div>
+</div>
+
+<div class="progress-chart-container">
+    <div>
+        <h2 class="mb-3">Progress <span class="description">(past <%= Constants::MAX_PROGRESS_HISTORY %> days)</span></h2>
+        <%= line_chart @chart_data, suffix: Constants::WEIGHT_UNIT, download: {filename: "progress_chart", background: "#ffffff"} %>
     </div>
 </div>
