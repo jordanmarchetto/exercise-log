@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_20_141349) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_05_162457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_141349) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "duration_unit"
+    t.jsonb "data", default: {}
     t.index ["exercise_id"], name: "index_workout_sets_on_exercise_id"
   end
 
