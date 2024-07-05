@@ -2,6 +2,10 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 
+:root {
+    --bs-body-font-weight-bold: 700;
+}
+
 @mixin generic-list {
     max-width: 95%;
     width: 100%;
@@ -68,9 +72,21 @@ body {
 .recent-sets-list {
     @include generic-list;
     @include scrollable;
+    .pr-set {
+        border-color: var(--bs-indigo);
+        border-top-width: 1px;
+
+        .rep-set-weight{
+            color: var(--bs-indigo);
+        }
+    }
     .recent-set-item {
-        .rpe-icon {
+        .rpe-icon, .pr-icon {
             font-size: 25px;
+        }
+        .est-pr, .est-pr-icon, .pr-icon {
+            color: var(--bs-indigo);
+            font-weight: var(--bs-body-font-weight-bold);
         }
     }
 }
