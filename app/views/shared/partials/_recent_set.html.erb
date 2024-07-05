@@ -1,4 +1,9 @@
-<a href="<%= exercise_workout_set_path(set.exercise, set) %>"" class="recent-set-item list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+<a href="<%= exercise_workout_set_path(set.exercise, set) %>" class="<%= 'pr-set' if set.is_pr? %> recent-set-item list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+    <% if set.is_pr? %>
+        <div class="rounded-circle flex-shrink-0">
+            <span class="pr-icon bi bi-star-fill"></span>
+        </div>
+    <% end %>
     <% if set.rpe? %>
         <div class="rounded-circle flex-shrink-0">
             <span class="rpe-icon bi bi-<%= set.rpe %>-circle-fill"></span>
@@ -7,31 +12,31 @@
     <div class="d-flex gap-2 w-100 justify-content-between">
         <div>
             <% case set.type when WeightWorkoutSet.name %>
-                <h6 class="mb-0">
+                <h6 class="mb-0 rep-set-weight">
                     <%= "#{set.rep_count} x #{set.rep_value}#{Constants::WEIGHT_UNIT}" %>
                 </h6>
-                <% when RepWorkoutSet.name %>
-                    <h6 class="mb-0">
-                        <%= "#{set.rep_count} reps" %>
-                    </h6>
-                <% when TimedWorkoutSet.name %>
-                    <h6 class="mb-0">
-                        <%= "#{set.duration}#{set.duration_unit}" %>
-                    </h6>
-                <% when DistanceWorkoutSet.name %>
-                    <h6 class="mb-0">
-                        <%= "#{set.distance} #{set.distance_unit}" %>
-                    </h6>
-                    <% if set.duration.present? && set.duration > 0 %>
-                    <h6 class="mb-0">
-                        <%= "#{set.duration}#{set.duration_unit}" %>
-                    </h6>
-                    <% end %>
+            <% when RepWorkoutSet.name %>
+                <h6 class="mb-0">
+                    <%= "#{set.rep_count} reps" %>
+                </h6>
+            <% when TimedWorkoutSet.name %>
+                <h6 class="mb-0">
+                    <%= "#{set.duration}#{set.duration_unit}" %>
+                </h6>
+            <% when DistanceWorkoutSet.name %>
+                <h6 class="mb-0">
+                    <%= "#{set.distance} #{set.distance_unit}" %>
+                </h6>
+                <% if set.duration.present? && set.duration > 0 %>
+                <h6 class="mb-0">
+                    <%= "#{set.duration}#{set.duration_unit}" %>
+                </h6>
                 <% end %>
+            <% end %>
 
-                <p class="mb-0 opacity-75">
-                    <%= set.type %>
-                </p>
+            <p class="mb-0 opacity-75">
+                <%= set.type %>
+            </p>
         </div>
         <% if show_date == true %>
             <small class="opacity-50 text-nowrap">
