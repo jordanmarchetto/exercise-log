@@ -3,43 +3,48 @@
         <div class="rounded-circle flex-shrink-0">
             <span class="rpe-icon bi bi-<%= set.rpe %>-circle-fill"></span>
         </div>
-        <% end %>
-            <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                    <% case set.type when WeightWorkoutSet.name %>
-                        <h6 class="mb-0">
-                            <%= "#{set.rep_count} x #{set.rep_value}#{Constants::WEIGHT_UNIT}" %>
-                        </h6>
-                        <% when RepWorkoutSet.name %>
-                            <h6 class="mb-0">
-                                <%= "#{set.rep_count} reps" %>
-                            </h6>
-                        <% when TimedWorkoutSet.name %>
-                            <h6 class="mb-0">
-                                <%= "#{set.duration}#{set.duration_unit}" %>
-                            </h6>
-                        <% when DistanceWorkoutSet.name %>
-                            <h6 class="mb-0">
-                                <%= "#{set.distance} #{set.distance_unit}" %>
-                            </h6>
-                            <% if set.duration.present? && set.duration > 0 %>
-                            <h6 class="mb-0">
-                                <%= "#{set.duration}#{set.duration_unit}" %>
-                            </h6>
-                            <% end %>
-                        <% end %>
-
-                        <p class="mb-0 opacity-75">
-                            <%= set.type %>
-                        </p>
-                </div>
-                <% if show_date == true %>
-                    <small class="opacity-50 text-nowrap">
-                        <%= display_time(set.created_at) %> - <%= display_date(set.created_at) %>
-                        <% if set.type == WeightWorkoutSet.name %>
-                            <span class="opacity-50"><br />Est 1RM: <%= calc_1rm([set]) %><%= Constants::WEIGHT_UNIT %></span>
-                        <% end %>
-                    </small>
+    <% end %>
+    <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+            <% case set.type when WeightWorkoutSet.name %>
+                <h6 class="mb-0">
+                    <%= "#{set.rep_count} x #{set.rep_value}#{Constants::WEIGHT_UNIT}" %>
+                </h6>
+                <% when RepWorkoutSet.name %>
+                    <h6 class="mb-0">
+                        <%= "#{set.rep_count} reps" %>
+                    </h6>
+                <% when TimedWorkoutSet.name %>
+                    <h6 class="mb-0">
+                        <%= "#{set.duration}#{set.duration_unit}" %>
+                    </h6>
+                <% when DistanceWorkoutSet.name %>
+                    <h6 class="mb-0">
+                        <%= "#{set.distance} #{set.distance_unit}" %>
+                    </h6>
+                    <% if set.duration.present? && set.duration > 0 %>
+                    <h6 class="mb-0">
+                        <%= "#{set.duration}#{set.duration_unit}" %>
+                    </h6>
+                    <% end %>
                 <% end %>
-            </div>
+
+                <p class="mb-0 opacity-75">
+                    <%= set.type %>
+                </p>
+        </div>
+        <% if show_date == true %>
+            <small class="opacity-50 text-nowrap">
+                <%= display_time(set.created_at) %> - <%= display_date(set.created_at) %>
+                <% if set.type == WeightWorkoutSet.name %>
+                    <% est_pr = set.is_estimated_pr? %>
+                    <% est_class = est_pr ? "est-pr" : "opacity-50" %>
+                    <span class="<%= est_class %>"><br />Est 1RM: <%= calc_1rm([set]) %><%= Constants::WEIGHT_UNIT %></span>
+                    <% if est_pr %>
+                        <span class="est-pr-icon bi bi-star-fill"></span>
+                    <% end %>
+                <% end %>
+            </small>
+        <% end %>
+    </div>
 </a>
