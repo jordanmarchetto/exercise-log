@@ -27,6 +27,14 @@ class WorkoutSet < ApplicationRecord
     super || ' seconds'
   end
 
+  def is_pr?
+    !!self.data['is_pr']
+  end
+
+  def is_pr=(value)
+    self.data['is_pr'] = !!value
+  end
+
   def self.has_reps?
     false
   end
