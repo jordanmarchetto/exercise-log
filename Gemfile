@@ -76,6 +76,11 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+end
+
 gem "cssbundling-rails", "~> 1.3"
 gem 'bootstrap', '~> 5.3.2'
 gem 'jquery-rails'
