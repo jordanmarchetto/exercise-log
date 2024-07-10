@@ -79,7 +79,7 @@ jobs:
           DB_PORT: 5432
           APP_PORT: 3000
           EXTERNAL_DB_PORT: 5432
-          SECRET_KEY_BASE: dummy_key  # Replace with actual value or use secrets
+          SECRET_KEY_BASE: 1 
 
       - name: Check Rails server status
         run: |
@@ -89,6 +89,13 @@ jobs:
       - name: Stop and remove Docker container
         run: |
           docker-compose down
+        env:
+          DB_USER: postgres_user
+          DB_PASSWORD: postgres_password
+          DB_PORT: 5432
+          APP_PORT: 3000
+          EXTERNAL_DB_PORT: 5432
+          SECRET_KEY_BASE: 1 
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
