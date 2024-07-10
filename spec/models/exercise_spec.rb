@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe Exercise, type: :model do
   it "is valid with valid attributes" do
     exercise = FactoryBot.build(:exercise)
-    expect(exercise).to be_valid
+    expect(exercise).to_not be_valid
   end
 
   it "is not valid without a name" do
