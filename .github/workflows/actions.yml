@@ -78,6 +78,7 @@ jobs:
           DB_PASSWORD: postgres_password
           DB_PORT: 5432
           APP_PORT: 3000
+          EXTERNAL_DB_PORT: 5432
           SECRET_KEY_BASE: dummy_key  # Replace with actual value or use secrets
 
       - name: Check Rails server status
