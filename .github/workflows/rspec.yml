@@ -1,6 +1,6 @@
 # .github/workflows/rspec.yml
 
-name: RSpec Tests
+name: RSpec
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - main  
 
 jobs:
-  rspec_tests:
+  tests:
     runs-on: ubuntu-latest
 
     services:
