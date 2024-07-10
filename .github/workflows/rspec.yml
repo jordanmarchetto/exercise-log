@@ -28,9 +28,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-    env:
-      DATABASE_URL: postgres://postgres:password@localhost:5432/exercise_log_test
-
     steps:
     - uses: actions/checkout@v2
 
