@@ -1,17 +1,14 @@
 # .github/workflows/rspec.yml
 
-name: RSpec
+name: RSpec Suite
 
 on:
-  push:
-    branches:
-      - main  
   pull_request:
     branches:
       - main  
 
 jobs:
-  tests:
+  rspec_tests:
     runs-on: ubuntu-latest
 
     services:
