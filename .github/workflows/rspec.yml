@@ -1,0 +1,53 @@
+# .github/workflows/rspec.yml
+
+name: RSpec
+
+on:
+  push:
+    branches:
+      - main  
+  pull_request:
+    branches:
+      - main  
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres_user
+          POSTGRES_PASSWORD: postgres_password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.3.0 
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+
+    - name: Set up the database
+      env:
+        DB_USER: postgres_user
+        DB_PASSWORD: postgres_password
+        DB_HOST: localhost
+        DB_PORT: 5432
+      run: bin/rails db:create db:schema:load RAILS_ENV=test  # Set up the test database
+
+    - name: Run RSpec
+      run: bundle exec rspec

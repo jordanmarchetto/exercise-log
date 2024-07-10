@@ -1,7 +1,6 @@
 class WorkoutSetsController < ApplicationController
 
   def create
-    #TODO: add param parsing
     exercise = Exercise.find(params[:exercise_id])
     @set = WorkoutSet.new(workout_set_params)
 
@@ -14,10 +13,6 @@ class WorkoutSetsController < ApplicationController
   end
 
   def show
-    @set = WorkoutSet.find(params[:id])
-  end
-
-  def edit
     @set = WorkoutSet.find(params[:id])
   end
 

@@ -28,6 +28,8 @@ class WeightWorkoutSet < WorkoutSet
   end
 
   def check_for_pr
+    return unless self.weight && self.exercise.highest_weight && self.estimated_max && self.exercise.highest_estimated_weight
+
     self.is_pr = true if self.weight >= self.exercise.highest_weight
     self.is_estimated_pr =  true if self.estimated_max >= self.exercise.highest_estimated_weight
   end
