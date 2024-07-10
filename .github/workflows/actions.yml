@@ -77,6 +77,7 @@ jobs:
           DB_USER: postgres_user
           DB_PASSWORD: postgres_password
           DB_PORT: 5432
+          APP_PORT: 3000
           SECRET_KEY_BASE: dummy_key  # Replace with actual value or use secrets
 
       - name: Check Rails server status
