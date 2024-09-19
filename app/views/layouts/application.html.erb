@@ -15,6 +15,7 @@
   </head>
 
   <body>
+    <%= yield :bootstrap_modals %>
     <div class="main d-flex flex-column">
       <%= yield %>
       <%= render partial: "shared/partials/footer" %>
