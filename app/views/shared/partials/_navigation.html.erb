@@ -84,7 +84,7 @@
 
 <% content_for :bootstrap_modals do %>
   <% if exercise.present? %>
-    <div class="modal" id="deleteExerciseModal" tabindex="-1" aria-labelledby="deleteExerciseModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteExerciseModal" tabindex="-1" aria-labelledby="deleteExerciseModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -106,7 +106,7 @@
   <% end %>
 
   <% if set.present? && set.id.present? && exercise && exercise.id.present? %>
-    <div class="modal" id="deleteSetModal" tabindex="-1" aria-labelledby="deleteSetModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteSetModal" tabindex="-1" aria-labelledby="deleteSetModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
