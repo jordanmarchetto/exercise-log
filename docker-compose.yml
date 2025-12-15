@@ -7,6 +7,8 @@ services:
       POSTGRES_PASSWORD: '${DB_PASSWORD}'
     ports:
       - "${EXTERNAL_DB_PORT}:5432"
+    networks:
+      - app_backend
     volumes:
       - exercise-log-db:/var/lib/postgresql/data
     healthcheck:
@@ -28,6 +30,9 @@ services:
       SECRET_KEY_BASE: '${SECRET_KEY_BASE}'
     ports:
       - "${APP_PORT}:3000"
+    networks:
+      - app_backend
+      - app_frontend
     depends_on:
       db:
         condition: "service_healthy"
@@ -36,3 +41,11 @@ services:
  
 volumes: 
   exercise-log-db:
+
+networks:
+  app_backend:
+    name: ${DOCKER_NETWORK_BACKEND:-exercise-log-backend}
+    internal: true
+  app_frontend:
+    name: ${DOCKER_NETWORK_FRONTEND:-exercise-log-frontend}
+    external: true

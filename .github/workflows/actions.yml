@@ -70,6 +70,10 @@ jobs:
         run: |
           docker build -t exercise-log:latest .
 
+      - name: Create external docker network
+        run: |
+          docker network create external_app_network
+
       - name: Run Docker container in detached mode
         run: |
           docker compose up -d
@@ -80,6 +84,7 @@ jobs:
           APP_PORT: 3000
           EXTERNAL_DB_PORT: 5432
           SECRET_KEY_BASE: 1 
+          DOCKER_NETWORK_FRONTEND: external_app_network
 
       - name: Check Rails server status
         run: |
@@ -111,12 +116,14 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          host: ${{ secrets.HOST }} # ip/hostname of deployment server
+          username: ${{ secrets.USERNAME }} # ssh username on deployment server
           key: ${{ secrets.KEY }} #ssh key
           port: ${{ secrets.PORT }}
+          # PROJECT_PATH is the full path of where the project lives on deployment server
+          # SCRIPT_TO_RUN is likely just ./bin/git-pull-reboot.sh
           script: |
             echo "going to script dir"
-            cd ${{ secrets.PROJECT_PATH}}
+            cd ${{ secrets.PROJECT_PATH }}
             echo "running update script"
             ./${{ secrets.SCRIPT_TO_RUN }}
