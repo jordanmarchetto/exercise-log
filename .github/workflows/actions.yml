@@ -117,7 +117,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }} # ip/hostname of deployment server
-          username: ${{ secrets.USERNAME }}
+          username: ${{ secrets.USERNAME }} # ssh username on deployment server
           key: ${{ secrets.KEY }} #ssh key
           port: ${{ secrets.PORT }}
           # PROJECT_PATH is the full path of where the project lives on deployment server
