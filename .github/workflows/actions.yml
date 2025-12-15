@@ -116,12 +116,14 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST }} # ip/hostname of deployment server
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }} #ssh key
           port: ${{ secrets.PORT }}
+          # PROJECT_PATH is the full path of where the project lives on deployment server
+          # SCRIPT_TO_RUN is likely just ./bin/git-pull-reboot.sh
           script: |
             echo "going to script dir"
-            cd ${{ secrets.PROJECT_PATH}}
+            cd ${{ secrets.PROJECT_PATH }}
             echo "running update script"
             ./${{ secrets.SCRIPT_TO_RUN }}
