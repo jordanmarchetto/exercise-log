@@ -70,6 +70,10 @@ jobs:
         run: |
           docker build -t exercise-log:latest .
 
+      - name: Create external docker network
+        run: |
+          docker network create external_app_network
+
       - name: Run Docker container in detached mode
         run: |
           docker compose up -d
@@ -80,6 +84,7 @@ jobs:
           APP_PORT: 3000
           EXTERNAL_DB_PORT: 5432
           SECRET_KEY_BASE: 1 
+          DOCKER_NETWORK_FRONTEND: external_app_network
 
       - name: Check Rails server status
         run: |
