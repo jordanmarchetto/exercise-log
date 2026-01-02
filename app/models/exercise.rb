@@ -12,6 +12,8 @@ class Exercise < ApplicationRecord
         WeightWorkoutSet.unscoped.where(exercise_id: id)
     end
 
+    #TODO: all these "_ever" methods should be dry'd up with the non-ever versions
+    #TODO: add specs for these methods
     def highest_weight
         return 0 if weight_workout_sets.empty?
 
