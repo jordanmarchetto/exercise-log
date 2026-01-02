@@ -4,4 +4,5 @@ module Constants
   DISTANCE_UNITS = ['mi', 'km', 'm', ' miles'].freeze
   TIME_UNITS = ['s', 'min', 'hr', ' seconds', ' minutes', ' hours'].freeze
   MAX_PROGRESS_HISTORY = 100
+  RECORDS_TIMESPAN_MONTHS = 6
 end
