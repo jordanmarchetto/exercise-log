@@ -1,5 +1,6 @@
 class WorkoutSet < ApplicationRecord
   belongs_to :exercise
+  default_scope { where(created_at: Constants::RECORDS_TIMESPAN_MONTHS.months.ago..Time.current) }
 
   # These should be defined in every child class
   NAME = "Workout Set Base Class"
