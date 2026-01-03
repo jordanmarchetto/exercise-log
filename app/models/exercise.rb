@@ -12,8 +12,6 @@ class Exercise < ApplicationRecord
         WeightWorkoutSet.unscoped.where(exercise_id: id)
     end
 
-    #TODO: all these "_ever" methods should be dry'd up with the non-ever versions
-    #TODO: add specs for these methods
     def highest_weight(all_records: false)
         highest_weight_set(all_records: all_records)&.rep_value&.floor || 0
     end
@@ -30,7 +28,7 @@ class Exercise < ApplicationRecord
         scope = all_records ? all_time_weight_workout_sets : weight_workout_sets
         return if scope.empty?
 
-        estimated_weights = weight_workout_sets.map do |set|
+        estimated_weights = scope.map do |set|
             { weight: set.estimated_max, set:}
         end
         estimated_weights.sort_by { |set| set[:weight] }.last[:set]
