@@ -6,7 +6,7 @@ class RecordsController < ApplicationController
     # get totals for those exercises
     real_total = @exercises.reduce(0) { |sum, exercise| sum + exercise.highest_weight }.round(2)
     estimated_total = @exercises.reduce(0) { |sum, exercise| sum + (exercise.highest_estimated_weight || 0) }.round(0)
-    all_time_real_total = @exercises.reduce(0) { |sum, exercise| sum + exercise.highest_weight_ever }.round(2)
+    all_time_real_total = @exercises.reduce(0) { |sum, exercise| sum + exercise.highest_weight(all_records: true) }.round(2)
     all_time_estimated_total = @exercises.reduce(0) { |sum, exercise| sum + (exercise.highest_estimated_weight_ever || 0) }.round(0)
     @totals = {real_total:, estimated_total:, all_time_real_total:, all_time_estimated_total:}
 

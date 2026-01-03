@@ -14,33 +14,21 @@ class Exercise < ApplicationRecord
 
     #TODO: all these "_ever" methods should be dry'd up with the non-ever versions
     #TODO: add specs for these methods
-    def highest_weight
-        return 0 if weight_workout_sets.empty?
-
-        weight_workout_sets.sort_by(&:rep_value).pluck(:rep_value).last.floor
+    def highest_weight(all_records: false)
+        highest_weight_set(all_records: all_records)&.rep_value&.floor || 0
     end
 
-    def highest_weight_set
-        return nil if weight_workout_sets.empty?
+    def highest_weight_set(all_records: false)
+        scope = all_records ? all_time_weight_workout_sets : weight_workout_sets
+        return nil if scope.empty?
 
-        weight_workout_sets.sort_by(&:rep_value).last
-    end
-
-    def highest_weight_ever
-        return 0 if all_time_weight_workout_sets.empty?
-
-        all_time_weight_workout_sets.sort_by(&:rep_value).pluck(:rep_value).last.floor
-    end
-
-    def highest_weight_set_ever
-        return nil if all_time_weight_workout_sets.empty?
-
-        all_time_weight_workout_sets.sort_by(&:rep_value).last
+        scope.sort_by(&:rep_value).last
     end
 
     # do the estimated weight calc on every set and return the "best" set
-    def estimated_highest_set
-        return if weight_workout_sets.empty?
+    def estimated_highest_set(all_records: false)
+        scope = all_records ? all_time_weight_workout_sets : weight_workout_sets
+        return if scope.empty?
 
         estimated_weights = weight_workout_sets.map do |set|
             { weight: set.estimated_max, set:}

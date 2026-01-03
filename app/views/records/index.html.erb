@@ -1,3 +1,4 @@
+<% date_format = "%m/%d/%Y" %>
 <%= render partial: "shared/partials/navigation" , locals: { title: "Records / Progress" } %>
 
 <div class="body-container d-flex flex-column flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center">
@@ -5,8 +6,8 @@
         <h2 class="mb-3">Records</h2>
         <% @exercises.each do |exercise| %>
             <p><strong><%= exercise.name%></strong>
-                <br>Heaviest: <%= exercise.highest_weight %><%= Constants::WEIGHT_UNIT %> (<%= exercise.highest_weight_set.created_at.strftime("%b %d, %Y") if exercise.highest_weight_set.present? %>)
-                <br>Estimated Max: <%= (exercise.highest_estimated_weight || 0) %><%= Constants::WEIGHT_UNIT %> (<%= exercise.estimated_highest_set&.rep_value %><%= Constants::WEIGHT_UNIT %> x <%= exercise.estimated_highest_set&.rep_count %>)</li>
+                <br>Heaviest: <%= exercise.highest_weight %><%= Constants::WEIGHT_UNIT %> <%= "(#{exercise.highest_weight_set.created_at.strftime(date_format)})" if exercise.highest_weight_set.present? %>
+                <br>Estimated Max: <%= (exercise.highest_estimated_weight || 0) %><%= Constants::WEIGHT_UNIT %> <%= "(#{exercise.estimated_highest_set&.rep_value} #{Constants::WEIGHT_UNIT} x #{exercise.estimated_highest_set&.rep_count})" if exercise.estimated_highest_set.present? %> </li>
             </p>
         <% end %>
         <hr />
@@ -30,7 +31,7 @@
         <h2 class="mb-3">All-Time Records</h2>
         <% @exercises.each do |exercise| %>
             <p><strong><%= exercise.name%></strong>
-                <br>Heaviest: <%= exercise.highest_weight_ever %><%= Constants::WEIGHT_UNIT %> (<%= exercise.highest_weight_set_ever.created_at.strftime("%b %d, %Y") if exercise.highest_weight_set_ever.present? %>)
+                <br>Heaviest: <%= exercise.highest_weight(all_records:true) %><%= Constants::WEIGHT_UNIT %> (<%= exercise.highest_weight_set(all_records:true)&.created_at.strftime(date_format) if exercise.highest_weight_set(all_records:true).present? %>)
                 <br>Estimated Max: <%= (exercise.highest_estimated_weight_ever || 0) %><%= Constants::WEIGHT_UNIT %> (<%= exercise.estimated_highest_set_ever&.rep_value %><%= Constants::WEIGHT_UNIT %> x <%= exercise.estimated_highest_set_ever&.rep_count %>)</li>
             </p>
         <% end %>
