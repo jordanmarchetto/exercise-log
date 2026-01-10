@@ -112,7 +112,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          push: false
+          push: true
           tags: "jordanmarchetto/exercise-log:${{ steps.version.outputs.version }}"
           context: .
 
