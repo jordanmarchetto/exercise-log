@@ -54,13 +54,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get release version
-        uses: reecetech/version-increment@2024.10.1
-        id: version
-        with:
-          scheme: semver
-          increment: patch
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -113,5 +106,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: "jordanmarchetto/exercise-log:${{ steps.version.outputs.version }}, jordanmarchetto/exercise-log:latest"
+          tags: "jordanmarchetto/exercise-log:${{ GITHUB_RUN_NUMBER }}, jordanmarchetto/exercise-log:latest"
           context: .
