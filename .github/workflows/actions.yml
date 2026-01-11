@@ -123,6 +123,3 @@ jobs:
           else
             echo "Tag $TAG_NAME already exists, skipping creation and push."
           fi
-          # The GITHUB_TOKEN is used here to allow pushing back to the repo
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
