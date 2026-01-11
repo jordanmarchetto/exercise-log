@@ -8,17 +8,27 @@ class Exercise < ApplicationRecord
         WeightWorkoutSet.where(exercise_id: id)
     end
 
-    def highest_weight
-        return 0 if weight_workout_sets.empty?
+    def all_time_weight_workout_sets
+        WeightWorkoutSet.unscoped.where(exercise_id: id)
+    end
 
-        weight_workout_sets.sort_by(&:rep_value).pluck(:rep_value).last.floor
+    def highest_weight(all_records: false)
+        highest_weight_set(all_records: all_records)&.rep_value&.floor || 0
+    end
+
+    def highest_weight_set(all_records: false)
+        scope = all_records ? all_time_weight_workout_sets : weight_workout_sets
+        return nil if scope.empty?
+
+        scope.sort_by(&:rep_value).last
     end
 
     # do the estimated weight calc on every set and return the "best" set
-    def estimated_highest_set
-        return if weight_workout_sets.empty?
+    def estimated_highest_set(all_records: false)
+        scope = all_records ? all_time_weight_workout_sets : weight_workout_sets
+        return if scope.empty?
 
-        estimated_weights = weight_workout_sets.map do |set|
+        estimated_weights = scope.map do |set|
             { weight: set.estimated_max, set:}
         end
         estimated_weights.sort_by { |set| set[:weight] }.last[:set]
@@ -26,5 +36,19 @@ class Exercise < ApplicationRecord
 
     def highest_estimated_weight
         estimated_highest_set&.estimated_max
+    end
+
+    # do the estimated weight calc on every set and return the "best" set
+    def estimated_highest_set_ever
+        return if all_time_weight_workout_sets.empty?
+
+        estimated_weights = all_time_weight_workout_sets.map do |set|
+            { weight: set.estimated_max, set:}
+        end
+        estimated_weights.sort_by { |set| set[:weight] }.last[:set]
+    end
+
+    def highest_estimated_weight_ever
+        estimated_highest_set_ever&.estimated_max
     end
 end

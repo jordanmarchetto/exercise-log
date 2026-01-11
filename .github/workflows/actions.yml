@@ -29,7 +29,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.3.0 
+        ruby-version: 3.4.8 
 
     - name: Install dependencies
       run: |
@@ -53,6 +53,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Get release version
+        uses: reecetech/version-increment@2024.10.1
+        id: version
+        with:
+          scheme: semver
+          increment: patch
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -105,25 +112,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
           push: true
-          tags: jordanmarchetto/exercise-log:latest
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }} # ip/hostname of deployment server
-          username: ${{ secrets.USERNAME }} # ssh username on deployment server
-          key: ${{ secrets.KEY }} #ssh key
-          port: ${{ secrets.PORT }}
-          # PROJECT_PATH is the full path of where the project lives on deployment server
-          # SCRIPT_TO_RUN is likely just ./bin/git-pull-reboot.sh
-          script: |
-            echo "going to script dir"
-            cd ${{ secrets.PROJECT_PATH }}
-            echo "running update script"
-            ./${{ secrets.SCRIPT_TO_RUN }}
+          tags: "jordanmarchetto/exercise-log:${{ steps.version.outputs.version }}, jordanmarchetto/exercise-log:latest"
+          context: .
