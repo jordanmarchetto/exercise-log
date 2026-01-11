@@ -19,7 +19,7 @@ services:
       retries: 5
 
   exercise-log:
-    build: .
+    image: jordanmarchetto/exercise-log:latest
     restart: unless-stopped
     entrypoint: [bin/docker-entrypoint.sh]
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
