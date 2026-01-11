@@ -14,7 +14,7 @@
                     <div class="exercise p-2">
                         <h4><a href="<%= exercise_path(exercise)%>" class="clickable-text"><span class="exercise-icon bi <%= display_icon(exercise) %>"> </span><%= exercise.name %></a></h4>
                         <% movement[:sets].each do |set| %>
-                            <div class="set">
+                            <div class="set recent-sets-list">
                                 <%= render partial: "shared/partials/recent_set" , locals: { set: set, show_date: false } %>
                             </div>
                         <% end %>
