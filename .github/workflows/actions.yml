@@ -113,7 +113,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: "jordanmarchetto/exercise-log:${{ steps.version.outputs.version }}"
+          tags: "jordanmarchetto/exercise-log:${{ steps.version.outputs.version }}, jordanmarchetto/exercise-log:latest"
           context: .
 
   deploy:
