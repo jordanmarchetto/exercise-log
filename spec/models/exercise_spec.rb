@@ -107,5 +107,28 @@ RSpec.describe Exercise, type: :model do
         expect(exercise.highest_estimated_weight).to be_nil
       end
     end
+
+    describe "tie-breaking by created_at" do
+      context "highest_weight_set" do
+        let(:exercise) { FactoryBot.create(:exercise, set_types: ['WeightWorkoutSet']) }
+        let!(:older_set) { FactoryBot.create(:weight_workout_set, exercise: exercise, rep_value: 150, created_at: 2.days.ago) }
+        let!(:newer_set) { FactoryBot.create(:weight_workout_set, exercise: exercise, rep_value: 150, created_at: 1.day.ago) }
+
+        it "returns the most recent set when weights are equal" do
+          expect(exercise.highest_weight_set).to eq(newer_set)
+        end
+      end
+
+      context "estimated_highest_set" do
+        let(:exercise) { FactoryBot.create(:exercise, set_types: ['WeightWorkoutSet']) }
+        let!(:older_set) { FactoryBot.create(:weight_workout_set, exercise: exercise, rep_value: 100, rep_count: 5, created_at: 2.days.ago) }
+        let!(:newer_set) { FactoryBot.create(:weight_workout_set, exercise: exercise, rep_value: 100, rep_count: 5, created_at: 1.day.ago) }
+
+        it "returns the most recent set when estimated_max values are equal" do
+          expect(older_set.estimated_max).to eq(newer_set.estimated_max)
+          expect(exercise.estimated_highest_set).to eq(newer_set)
+        end
+      end
+    end
   end
 end
