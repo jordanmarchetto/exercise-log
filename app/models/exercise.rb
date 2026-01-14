@@ -20,7 +20,7 @@ class Exercise < ApplicationRecord
         scope = all_records ? all_time_weight_workout_sets : weight_workout_sets
         return nil if scope.empty?
 
-        scope.sort_by(&:rep_value).last
+        scope.sort_by{ |set| [set.rep_value, set.created_at] }.last
     end
 
     # do the estimated weight calc on every set and return the "best" set
@@ -31,7 +31,7 @@ class Exercise < ApplicationRecord
         estimated_weights = scope.map do |set|
             { weight: set.estimated_max, set:}
         end
-        estimated_weights.sort_by { |set| set[:weight] }.last[:set]
+        estimated_weights.sort_by { |set| [set[:weight], set[:set].created_at] }.last[:set]
     end
 
     def highest_estimated_weight
